@@ -13,6 +13,28 @@
                 @csrf
                 @method('PUT')
                 <div class="form-group">
+                    <label for="motorista_id">Motorista</label>
+                    <select name="motorista_id" class="form-control" id="motorista_id" required>
+                        <option value="">Selecione um motorista</option>
+                        @foreach($motoristas as $motorista)
+                            <option value="{{ $motorista->id }}" {{ $carga->motorista_id == $motorista->id ? 'selected' : '' }}>
+                                {{ $motorista->nome }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="veiculo_id">Veículo</label>
+                    <select name="veiculo_id" class="form-control" id="veiculo_id" required>
+                        <option value="">Selecione um veículo</option>
+                        @foreach($veiculos as $veiculo)
+                            <option value="{{ $veiculo->id }}" {{ $carga->veiculo_id == $veiculo->id ? 'selected' : '' }}>
+                                {{ $veiculo->placa_cavalo }} / {{ $veiculo->placa_carreta }} ({{ $veiculo->motorista->nome }})
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="numero_dt">Número do DT</label>
                     <input type="text" name="numero_dt" class="form-control" id="numero_dt" value="{{ $carga->numero_dt }}" required>
                 </div>

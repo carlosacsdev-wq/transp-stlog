@@ -4,23 +4,29 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Carga;
+use App\Models\Motorista;
+use App\Models\Veiculo;
 
 class CargaController extends Controller
 {
     public function index()
     {
-        $cargas = Carga::all();
+        $cargas = Carga::with(['motorista', 'veiculo'])->get();
         return view('cargas.index', compact('cargas'));
     }
 
     public function create()
     {
-        return view('cargas.create');
+        $motoristas = Motorista::all();
+        $veiculos = Veiculo::with('motorista')->get();
+        return view('cargas.create', compact('motoristas', 'veiculos'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
+            'motorista_id' => 'required|exists:motoristas,id',
+            'veiculo_id' => 'required|exists:veiculos,id',
             'numero_dt' => 'required',
             'data_carregamento' => 'required|date',
             'data_agendamento_descarga' => 'required|date',
@@ -34,12 +40,16 @@ class CargaController extends Controller
 
     public function edit(Carga $carga)
     {
-        return view('cargas.edit', compact('carga'));
+        $motoristas = Motorista::all();
+        $veiculos = Veiculo::with('motorista')->get();
+        return view('cargas.edit', compact('carga', 'motoristas', 'veiculos'));
     }
 
     public function update(Request $request, Carga $carga)
     {
         $request->validate([
+            'motorista_id' => 'required|exists:motoristas,id',
+            'veiculo_id' => 'required|exists:veiculos,id',
             'numero_dt' => 'required',
             'data_carregamento' => 'required|date',
             'data_agendamento_descarga' => 'required|date',

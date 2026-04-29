@@ -3,42 +3,51 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Viagem;
+use App\Models\Motorista;
+use App\Models\Veiculo;
 
 class ViagemController extends Controller
 {
     public function index()
     {
-        $viagens = \App\Models\Viagem::all();
+        $viagens = Viagem::with(['motorista', 'veiculo'])->get();
         return view('viagens.index', compact('viagens'));
     }
 
     public function create()
     {
-        return view('viagens.create');
+        $motoristas = Motorista::all();
+        $veiculos = Veiculo::with('motorista')->get();
+        return view('viagens.create', compact('motoristas', 'veiculos'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
+            'motorista_id' => 'required|exists:motoristas,id',
+            'veiculo_id' => 'required|exists:veiculos,id',
             'data_hora_carregamento' => 'required|date',
-            'nome_motorista' => 'required',
             'cte' => 'required',
         ]);
 
-        \App\Models\Viagem::create($request->all());
+        Viagem::create($request->all());
         return redirect()->route('viagens.index')->with('success', 'Viagem criada com sucesso.');
     }
 
-    public function edit(\App\Models\Viagem $viagem)
+    public function edit(Viagem $viagem)
     {
-        return view('viagens.edit', compact('viagem'));
+        $motoristas = Motorista::all();
+        $veiculos = Veiculo::with('motorista')->get();
+        return view('viagens.edit', compact('viagem', 'motoristas', 'veiculos'));
     }
 
-    public function update(Request $request, \App\Models\Viagem $viagem)
+    public function update(Request $request, Viagem $viagem)
     {
         $request->validate([
+            'motorista_id' => 'required|exists:motoristas,id',
+            'veiculo_id' => 'required|exists:veiculos,id',
             'data_hora_carregamento' => 'required|date',
-            'nome_motorista' => 'required',
             'cte' => 'required',
         ]);
 
@@ -46,8 +55,9 @@ class ViagemController extends Controller
         return redirect()->route('viagens.index')->with('success', 'Viagem atualizada com sucesso.');
     }
 
-    public function destroy(\App\Models\Viagem $viagem)
+    public function destroy(Viagem $viagem)
     {
         $viagem->delete();
         return redirect()->route('viagens.index')->with('success', 'Viagem excluída com sucesso.');
-    }}
+    }
+}

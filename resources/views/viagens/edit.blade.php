@@ -13,6 +13,28 @@
                 @csrf
                 @method('PUT')
                 <div class="form-group">
+                    <label for="motorista_id">Motorista</label>
+                    <select name="motorista_id" class="form-control" id="motorista_id" required>
+                        <option value="">Selecione um motorista</option>
+                        @foreach($motoristas as $motorista)
+                            <option value="{{ $motorista->id }}" {{ $viagem->motorista_id == $motorista->id ? 'selected' : '' }}>
+                                {{ $motorista->nome }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="veiculo_id">Veículo</label>
+                    <select name="veiculo_id" class="form-control" id="veiculo_id" required>
+                        <option value="">Selecione um veículo</option>
+                        @foreach($veiculos as $veiculo)
+                            <option value="{{ $veiculo->id }}" {{ $viagem->veiculo_id == $veiculo->id ? 'selected' : '' }}>
+                                {{ $veiculo->placa_cavalo }} / {{ $veiculo->placa_carreta }} ({{ $veiculo->motorista->nome }})
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="data_hora_carregamento">Data/Hora Carregamento</label>
                     <input type="datetime-local" name="data_hora_carregamento" class="form-control" id="data_hora_carregamento" value="{{ date('Y-m-d\TH:i', strtotime($viagem->data_hora_carregamento)) }}" required>
                 </div>
@@ -23,10 +45,6 @@
                 <div class="form-group">
                     <label for="data_hora_descarga">Data/Hora Descarga Cliente</label>
                     <input type="datetime-local" name="data_hora_descarga" class="form-control" id="data_hora_descarga" value="{{ $viagem->data_hora_descarga ? date('Y-m-d\TH:i', strtotime($viagem->data_hora_descarga)) : '' }}">
-                </div>
-                <div class="form-group">
-                    <label for="nome_motorista">Nome do Motorista</label>
-                    <input type="text" name="nome_motorista" class="form-control" id="nome_motorista" value="{{ $viagem->nome_motorista }}" required>
                 </div>
                 <div class="form-group">
                     <label for="cte">CTe da Carga</label>

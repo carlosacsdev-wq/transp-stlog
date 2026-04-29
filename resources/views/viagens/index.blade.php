@@ -19,10 +19,11 @@
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Motorista</th>
+                        <th>Veículo</th>
                         <th>Carregamento</th>
                         <th>Chegada</th>
                         <th>Descarga</th>
-                        <th>Motorista</th>
                         <th>CTe</th>
                         <th>Ações</th>
                     </tr>
@@ -31,10 +32,11 @@
                     @foreach($viagens as $viagem)
                         <tr>
                             <td>{{ $viagem->id }}</td>
+                            <td>{{ $viagem->motorista->nome ?? 'N/A' }}</td>
+                            <td>{{ $viagem->veiculo ? $viagem->veiculo->placa_cavalo . ' / ' . $viagem->veiculo->placa_carreta : 'N/A' }}</td>
                             <td>{{ $viagem->data_hora_carregamento }}</td>
                             <td>{{ $viagem->data_hora_chegada }}</td>
                             <td>{{ $viagem->data_hora_descarga }}</td>
-                            <td>{{ $viagem->nome_motorista }}</td>
                             <td>{{ $viagem->cte }}</td>
                             <td>
                                 <a href="{{ route('viagens.edit', $viagem->id) }}" class="btn btn-warning btn-sm">Editar</a>

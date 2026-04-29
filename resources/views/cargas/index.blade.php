@@ -19,6 +19,8 @@
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Motorista</th>
+                        <th>Veículo</th>
                         <th>DT</th>
                         <th>Carregamento</th>
                         <th>Descarga Agendada</th>
@@ -31,6 +33,8 @@
                     @foreach($cargas as $carga)
                         <tr>
                             <td>{{ $carga->id }}</td>
+                            <td>{{ $carga->motorista->nome ?? 'N/A' }}</td>
+                            <td>{{ $carga->veiculo ? $carga->veiculo->placa_cavalo . ' / ' . $carga->veiculo->placa_carreta : 'N/A' }}</td>
                             <td>{{ $carga->numero_dt }}</td>
                             <td>{{ $carga->data_carregamento }}</td>
                             <td>{{ $carga->data_agendamento_descarga }}</td>

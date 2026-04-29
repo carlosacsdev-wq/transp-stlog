@@ -19,11 +19,12 @@
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Motorista</th>
+                        <th>Veículo</th>
                         <th>CTe</th>
                         <th>DT</th>
                         <th>Data Pagamento</th>
                         <th>Valor Frete</th>
-                        <th>Motorista</th>
                         <th>Adiantamento</th>
                         <th>Saldo</th>
                         <th>Ações</th>
@@ -33,11 +34,12 @@
                     @foreach($pagamentos as $pagamento)
                         <tr>
                             <td>{{ $pagamento->id }}</td>
+                            <td>{{ $pagamento->motorista->nome ?? 'N/A' }}</td>
+                            <td>{{ $pagamento->veiculo ? $pagamento->veiculo->placa_cavalo . ' / ' . $pagamento->veiculo->placa_carreta : 'N/A' }}</td>
                             <td>{{ $pagamento->cte }}</td>
                             <td>{{ $pagamento->dt }}</td>
                             <td>{{ $pagamento->data_pagamento }}</td>
                             <td>R$ {{ number_format($pagamento->valor_frete, 2, ',', '.') }}</td>
-                            <td>{{ $pagamento->nome_motorista }}</td>
                             <td>R$ {{ number_format($pagamento->valor_adiantamento, 2, ',', '.') }}</td>
                             <td>R$ {{ number_format($pagamento->saldo_frete, 2, ',', '.') }}</td>
                             <td>
