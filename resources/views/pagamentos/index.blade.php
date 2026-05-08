@@ -43,11 +43,15 @@
                             <td>R$ {{ number_format($pagamento->valor_adiantamento, 2, ',', '.') }}</td>
                             <td>R$ {{ number_format($pagamento->saldo_frete, 2, ',', '.') }}</td>
                             <td>
-                                <a href="{{ route('pagamentos.edit', $pagamento->id) }}" class="btn btn-warning btn-sm">Editar</a>
+                                <a href="{{ route('pagamentos.edit', $pagamento->id) }}" class="btn btn-warning btn-sm" title="Editar">
+                                    <i class="fas fa-edit"></i>
+                                </a>
                                 <form action="{{ route('pagamentos.destroy', $pagamento->id) }}" method="POST" style="display:inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza?')">Excluir</button>
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza?')" title="Excluir">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
                                 </form>
                             </td>
                         </tr>

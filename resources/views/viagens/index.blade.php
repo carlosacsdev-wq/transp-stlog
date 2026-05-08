@@ -39,11 +39,15 @@
                             <td>{{ $viagem->data_hora_descarga }}</td>
                             <td>{{ $viagem->cte }}</td>
                             <td>
-                                <a href="{{ route('viagens.edit', $viagem->id) }}" class="btn btn-warning btn-sm">Editar</a>
+                                <a href="{{ route('viagens.edit', $viagem->id) }}" class="btn btn-warning btn-sm" title="Editar">
+                                    <i class="fas fa-edit"></i>
+                                </a>
                                 <form action="{{ route('viagens.destroy', $viagem->id) }}" method="POST" style="display:inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza?')">Excluir</button>
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza?')" title="Excluir">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
                                 </form>
                             </td>
                         </tr>

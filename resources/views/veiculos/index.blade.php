@@ -35,11 +35,15 @@
                             <td>{{ $veiculo->placa_carreta }}</td>
                             <td>{{ $veiculo->modelo }}</td>
                             <td>
-                                <a href="{{ route('veiculos.edit', $veiculo->id) }}" class="btn btn-warning btn-sm">Editar</a>
+                                <a href="{{ route('veiculos.edit', $veiculo->id) }}" class="btn btn-warning btn-sm" title="Editar">
+                                    <i class="fas fa-edit"></i>
+                                </a>
                                 <form action="{{ route('veiculos.destroy', $veiculo->id) }}" method="POST" style="display:inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza?')">Excluir</button>
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza?')" title="Excluir">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
                                 </form>
                             </td>
                         </tr>
