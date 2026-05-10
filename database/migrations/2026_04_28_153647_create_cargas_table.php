@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('data_agendamento_descarga');
             $table->string('cliente');
             $table->decimal('valor_frete', 10, 2);
+            $table->string('status');
             $table->timestamps();
         });
     }

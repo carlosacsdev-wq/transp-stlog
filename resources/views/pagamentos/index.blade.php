@@ -18,7 +18,7 @@
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        {{-- <th>ID</th> --}}
                         <th>Motorista</th>
                         <th>Veículo</th>
                         <th>CTe</th>
@@ -33,7 +33,7 @@
                 <tbody>
                     @foreach($pagamentos as $pagamento)
                         <tr>
-                            <td>{{ $pagamento->id }}</td>
+                            {{-- <td>{{ $pagamento->id }}</td> --}}
                             <td>{{ $pagamento->motorista->nome ?? 'N/A' }}</td>
                             <td>{{ $pagamento->veiculo ? $pagamento->veiculo->placa_cavalo . ' / ' . $pagamento->veiculo->placa_carreta : 'N/A' }}</td>
                             <td>{{ $pagamento->cte }}</td>

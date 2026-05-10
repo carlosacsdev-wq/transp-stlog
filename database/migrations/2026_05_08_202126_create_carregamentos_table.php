@@ -11,17 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('programacaos', function (Blueprint $table) {
+        Schema::create('carregamentos', function (Blueprint $table) {
             $table->id();
             $table->string('DT');
             $table->date('Data_Carreg');
-            $table->date('Data_Descarreg');
             $table->string('Fabrica_Carreg');
+            $table->string('CTe');
             $table->string('Cliente_Destino');
             $table->string('Cidade_Destino');
             $table->date('Agend_Descarreg');
-            $table->string('Motorista'); // aqui precisa ser um campo select
-            $table->enum('Status', ['Pendente', 'Em Andamento', 'Comprometido', 'Cancelado'])->default('Pendente');
+            $table->string('Motorista');
             $table->timestamps();
         });
     }

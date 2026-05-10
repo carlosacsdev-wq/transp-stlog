@@ -14,7 +14,7 @@
                 @method('PUT')
                 <div class="form-group">
                     <label for="motorista_id">Motorista</label>
-                    <select name="motorista_id" class="form-control" id="motorista_id" required>
+                    <select name="motorista_id" class="form-control" id="motorista_id">
                         <option value="">Selecione um motorista</option>
                         @foreach($motoristas as $motorista)
                             <option value="{{ $motorista->id }}" {{ $carga->motorista_id == $motorista->id ? 'selected' : '' }}>
@@ -25,7 +25,7 @@
                 </div>
                 <div class="form-group">
                     <label for="veiculo_id">Veículo</label>
-                    <select name="veiculo_id" class="form-control" id="veiculo_id" required>
+                    <select name="veiculo_id" class="form-control" id="veiculo_id">
                         <option value="">Selecione um veículo</option>
                         @foreach($veiculos as $veiculo)
                             <option value="{{ $veiculo->id }}" {{ $carga->veiculo_id == $veiculo->id ? 'selected' : '' }}>
@@ -45,6 +45,13 @@
                 <div class="form-group">
                     <label for="data_agendamento_descarga">Data de Agendamento de Descarga</label>
                     <input type="date" name="data_agendamento_descarga" class="form-control" id="data_agendamento_descarga" value="{{ $carga->data_agendamento_descarga }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="status">Status da Carga</label>
+                    <select name="status" class="form-control" id="status" required>
+                        <option value="Pendente" {{ $carga->status == 'Pendente' ? 'selected' : '' }}>Pendente</option>
+                        <option value="Comprometida" {{ $carga->status == 'Comprometida' ? 'selected' : '' }}>Comprometida</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="cliente">Nome do Cliente</label>

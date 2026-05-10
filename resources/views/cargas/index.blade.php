@@ -3,59 +3,69 @@
 @section('title', 'Cargas')
 
 @section('content_header')
-    <h1>Cargas</h1>
+<h1>Programação</h1>
 @stop
 
 @section('content')
-    <div class="card">
-        <div class="card-header">
-            <h3 class="card-title">Listagem de Cargas</h3>
-            <div class="card-tools">
-                <a href="{{ route('cargas.create') }}" class="btn btn-primary btn-sm">Nova Carga</a>
-            </div>
-        </div>
-        <div class="card-body">
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Motorista</th>
-                        <th>Veículo</th>
-                        <th>DT</th>
-                        <th>Carregamento</th>
-                        <th>Descarga Agendada</th>
-                        <th>Cliente</th>
-                        <th>Valor Frete</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($cargas as $carga)
-                        <tr>
-                            <td>{{ $carga->id }}</td>
-                            <td>{{ $carga->motorista->nome ?? 'N/A' }}</td>
-                            <td>{{ $carga->veiculo ? $carga->veiculo->placa_cavalo . ' / ' . $carga->veiculo->placa_carreta : 'N/A' }}</td>
-                            <td>{{ $carga->numero_dt }}</td>
-                            <td>{{ $carga->data_carregamento }}</td>
-                            <td>{{ $carga->data_agendamento_descarga }}</td>
-                            <td>{{ $carga->cliente }}</td>
-                            <td>R$ {{ number_format($carga->valor_frete, 2, ',', '.') }}</td>
-                            <td>
-                                <a href="{{ route('cargas.edit', $carga->id) }}" class="btn btn-warning btn-sm" title="Editar">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <form action="{{ route('cargas.destroy', $carga->id) }}" method="POST" style="display:inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza?')" title="Excluir">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Listagem de Cargas</h3>
+        <div class="card-tools">
+            <a href="{{ route('cargas.create') }}" class="btn btn-primary btn-sm">Nova Carga</a>
         </div>
     </div>
+    <div class="card-body">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    {{-- <th>ID</th> --}}
+                    <th>Motorista</th>
+                    <th>Veículo</th>
+                    <th>DT</th>
+                    <th>Carregamento</th>
+                    <th>Descarga Agendada</th>
+                    <th>Cliente</th>
+                    <th>Valor Frete</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($cargas as $carga)
+                    <tr>
+                        {{-- <td>{{ $carga->id }}</td> --}}
+                        <td>{{ $carga->motorista->nome ?? 'N/A' }}</td>
+                        <td>{{ $carga->veiculo ? $carga->veiculo->placa_cavalo . ' / ' . $carga->veiculo->placa_carreta : 'N/A' }}
+                        </td>
+                        <td>{{ $carga->numero_dt }}</td>
+                        <td>{{ $carga->data_carregamento }}</td>
+                        <td>{{ $carga->data_agendamento_descarga }}</td>
+                        <td>{{ $carga->cliente }}</td>
+                        <td>R$ {{ number_format($carga->valor_frete, 2, ',', '.') }}</td>
+                        <td>
+                            @if($carga->status == 'Comprometida')
+                                <span class="badge badge-success">{{ $carga->status }}</span>
+                            @else
+                                <span class="badge badge-warning">{{ $carga->status }}</span>
+                            @endif
+                        </td>
+                        <td>
+                            <a href="{{ route('cargas.edit', $carga->id) }}" class="btn btn-warning btn-sm" title="Editar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <form action="{{ route('cargas.destroy', $carga->id) }}" method="POST" style="display:inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza?')"
+                                    title="Excluir">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
 @stop
