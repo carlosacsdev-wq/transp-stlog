@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('Cliente_Destino');
             $table->string('Cidade_Destino');
             $table->date('Agend_Descarreg');
-            $table->string('Motorista');
+            $table->string('Motorista'); // aqui precisa ser um campo select
             $table->enum('Status', ['Pendente', 'Em Andamento', 'Comprometido', 'Cancelado'])->default('Pendente');
             $table->timestamps();
         });

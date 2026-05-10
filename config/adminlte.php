@@ -317,6 +317,11 @@ return [
             'url'  => 'cargas',
             'icon' => 'fas fa-fw fa-box',
         ],
+        [
+            'text' => 'Conta',
+            'url'  => 'contas',
+            'icon' => 'fas fa-fw fa-money-check-alt',
+        ],
         ['header' => 'OCORRÊNCIA'],
         [
             'text' => 'Viagem',

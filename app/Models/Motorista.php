@@ -11,4 +11,10 @@ class Motorista extends Model
     public function veiculos()
     {
         return $this->hasMany(Veiculo::class);
-    }}
+    }
+
+    public function contas()
+    {
+        return $this->hasMany(Conta::class);
+    }
+}

@@ -8,6 +8,8 @@ use App\Http\Controllers\CargaController;
 use App\Http\Controllers\PagamentoController;
 use App\Http\Controllers\ViagemController;
 
+use App\Http\Controllers\ContaController;
+
 Route::get('/', function () {
     return redirect('/login');
 });
@@ -15,6 +17,7 @@ Route::get('/', function () {
 Route::resource('motoristas', MotoristaController::class);
 Route::resource('veiculos', VeiculoController::class);
 Route::resource('cargas', CargaController::class);
+Route::resource('contas', ContaController::class);
 Route::resource('pagamentos', PagamentoController::class);
 Route::resource('viagens', ViagemController::class)->parameters([
     'viagens' => 'viagem'
