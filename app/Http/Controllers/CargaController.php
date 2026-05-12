@@ -11,7 +11,11 @@ class CargaController extends Controller
 {
     public function index()
     {
-        $cargas = Carga::with(['motorista', 'veiculo'])->get();
+        $cargas = Carga::with(['motorista', 'veiculo'])
+            ->where(function($query) {
+                $query->whereNull('cte')->orWhere('cte', '');
+            })
+            ->get();
         return view('cargas.index', compact('cargas'));
     }
 

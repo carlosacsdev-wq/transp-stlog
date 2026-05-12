@@ -312,6 +312,12 @@ return [
             'url'  => 'veiculos',
             'icon' => 'fas fa-fw fa-truck',
         ],
+
+        [
+            'text' => 'Conta',
+            'url'  => 'contas',
+            'icon' => 'fas fa-fw fa-money-check-alt',
+        ],
         [
             'text' => 'Programação',
             'url'  => 'cargas',
@@ -320,11 +326,6 @@ return [
             'text' => 'Carregamento',
             'url'  => 'carregamentos',
             'icon' => 'fas fa-fw fa-file-invoice',
-        ],
-        [
-            'text' => 'Conta',
-            'url'  => 'contas',
-            'icon' => 'fas fa-fw fa-money-check-alt',
         ],
         
         ['header' => 'OCORRÊNCIA'],
