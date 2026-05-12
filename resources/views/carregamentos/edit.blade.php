@@ -38,6 +38,13 @@
                 @csrf
                 @method('PUT')
                 
+                <div class="form-group">
+                    <label for="data_carregamento">Data/Hora Efetiva de Carregamento</label>
+                    <input type="datetime-local" name="data_carregamento" class="form-control" id="data_carregamento"
+                        value="{{ old('data_carregamento') ?? ($carregamento->data_carregamento ? date('Y-m-d\TH:i', strtotime($carregamento->data_carregamento)) : '') }}" required>
+                    <small class="text-muted">Informe a data e hora em que o carregamento foi concluído.</small>
+                </div>
+
                 <div class="row">
                     <div class="col-md-6 form-group">
                         <label for="cte">Número do CTE</label>

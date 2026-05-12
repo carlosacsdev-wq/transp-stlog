@@ -21,9 +21,12 @@
                     {{-- <th>ID</th> --}}
                     <th>Motorista</th>
                     <th>Veículo</th>
+                    <th>DT</th>
                     <th>Carregamento</th>
                     <th>Chegada</th>
                     <th>Descarga</th>
+                    <th>Cliente</th>
+                    <th>Valor Frete</th>
                     <th>CTe</th>
                     <th>Ações</th>
                 </tr>
@@ -35,9 +38,12 @@
                         <td>{{ $viagem->motorista->nome ?? 'N/A' }}</td>
                         <td>{{ $viagem->veiculo ? $viagem->veiculo->placa_cavalo . ' / ' . $viagem->veiculo->placa_carreta : 'N/A' }}
                         </td>
-                        <td>{{ $viagem->data_hora_carregamento }}</td>
-                        <td>{{ $viagem->data_hora_chegada }}</td>
-                        <td>{{ $viagem->data_hora_descarga }}</td>
+                        <td>{{ $viagem->numero_dt }}</td>
+                        <td>{{ $viagem->data_carregamento ? \Carbon\Carbon::parse($viagem->data_carregamento)->format('d/m/Y H:i') : 'N/A' }}</td>
+                        <td>{{ $viagem->data_hora_chegada ? \Carbon\Carbon::parse($viagem->data_hora_chegada)->format('d/m/Y H:i') : 'Pendente' }}</td>
+                        <td>{{ $viagem->data_hora_descarga ? \Carbon\Carbon::parse($viagem->data_hora_descarga)->format('d/m/Y H:i') : 'Pendente' }}</td>
+                        <td>{{ $viagem->cliente }}</td>
+                        <td>R$ {{ number_format($viagem->valor_frete, 2, ',', '.') }}</td>
                         <td>{{ $viagem->cte }}</td>
                         <td>
                             <a href="{{ route('viagens.edit', $viagem->id) }}" class="btn btn-warning btn-sm"

@@ -3,13 +3,13 @@
 @section('title', 'Carregamentos')
 
 @section('content_header')
-<h1>Carregamentos (Emissão de Documentos)</h1>
+<h1>Carregamentos</h1>
 @stop
 
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Cargas Comprometidas Aguardando Documentos</h3>
+        <h3 class="card-title">Controle de carregamentos</h3>
     </div>
     <div class="card-body">
         @if(session('success'))
@@ -39,15 +39,15 @@
                         <td>{{ $carga->veiculo ? $carga->veiculo->placa_cavalo . ' / ' . $carga->veiculo->placa_carreta : 'N/A' }}
                         </td>
                         <td>{{ $carga->numero_dt }}</td>
-                        <td>{{ \Carbon\Carbon::parse($carga->data_carregamento)->format('d/m/Y') }}</td>
-                        <td>{{ \Carbon\Carbon::parse($carga->data_agendamento_descarga)->format('d/m/Y') }}</td>
+                        <td>{{ $carga->data_carregamento ? \Carbon\Carbon::parse($carga->data_carregamento)->format('d/m/Y H:i') : 'N/A' }}</td>
+                        <td>{{ $carga->data_agendamento_descarga ? \Carbon\Carbon::parse($carga->data_agendamento_descarga)->format('d/m/Y H:i') : 'N/A' }}</td>
                         <td>{{ $carga->cliente }}</td>
                         <td>{{ $carga->cte ?: 'Pendente' }}</td>
                         <td>{{ $carga->mdfe ?: 'Pendente' }}</td>
                         <td>
-                            <a href="{{ route('carregamentos.edit', $carga->id) }}" class="btn btn-info btn-sm"
-                                title="Informar Documentos">
-                                <i class="fas fa-file-invoice"></i> Docs
+                            <a href="{{ route('carregamentos.edit', $carga->id) }}" class="btn btn-warning btn-sm"
+                                title="Editar Carregamento">
+                                <i class="fas fa-edit"></i> Editar
                             </a>
                         </td>
                     </tr>

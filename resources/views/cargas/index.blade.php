@@ -9,7 +9,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Listagem de Cargas</h3>
+        <h3 class="card-title">Listagem cargas programadas</h3>
         <div class="card-tools">
             <a href="{{ route('cargas.create') }}" class="btn btn-primary btn-sm">Nova Carga</a>
         </div>
@@ -38,16 +38,22 @@
                         <td>{{ $carga->veiculo ? $carga->veiculo->placa_cavalo . ' / ' . $carga->veiculo->placa_carreta : 'N/A' }}
                         </td>
                         <td>{{ $carga->numero_dt }}</td>
-                        <td>{{ $carga->data_carregamento }}</td>
-                        <td>{{ $carga->data_agendamento_descarga }}</td>
+                        <td>{{ $carga->data_carregamento ? \Carbon\Carbon::parse($carga->data_carregamento)->format('d/m/Y H:i') : 'N/A' }}</td>
+                        <td>{{ $carga->data_agendamento_descarga ? \Carbon\Carbon::parse($carga->data_agendamento_descarga)->format('d/m/Y H:i') : 'N/A' }}</td>
                         <td>{{ $carga->cliente }}</td>
                         <td>R$ {{ number_format($carga->valor_frete, 2, ',', '.') }}</td>
                         <td>
-                            @if($carga->status == 'Comprometida')
-                                <span class="badge badge-success">{{ $carga->status }}</span>
-                            @else
-                                <span class="badge badge-warning">{{ $carga->status }}</span>
-                            @endif
+                            @php
+                                $badgeClass = match($carga->status) {
+                                    'Comprometida' => 'success',
+                                    'Pendente' => 'warning',
+                                    'Cancelada' => 'danger',
+                                    'Declinada' => 'secondary',
+                                    'Retirada' => 'primary',
+                                    default => 'info'
+                                };
+                            @endphp
+                            <span class="badge badge-{{ $badgeClass }}">{{ $carga->status }}</span>
                         </td>
                         <td>
                             <a href="{{ route('cargas.edit', $carga->id) }}" class="btn btn-warning btn-sm" title="Editar">

@@ -34,12 +34,12 @@
                     <input type="text" name="numero_dt" class="form-control" id="numero_dt" placeholder="Número do DT" required>
                 </div>
                 <div class="form-group">
-                    <label for="data_carregamento">Data de Carregamento</label>
-                    <input type="date" name="data_carregamento" class="form-control" id="data_carregamento" required>
+                    <label for="data_carregamento">Data/Hora de Carregamento</label>
+                    <input type="datetime-local" name="data_carregamento" class="form-control" id="data_carregamento" required>
                 </div>
                 <div class="form-group">
-                    <label for="data_agendamento_descarga">Data de Agendamento de Descarga</label>
-                    <input type="date" name="data_agendamento_descarga" class="form-control" id="data_agendamento_descarga" required>
+                    <label for="data_agendamento_descarga">Data/Hora de Agendamento de Descarga</label>
+                    <input type="datetime-local" name="data_agendamento_descarga" class="form-control" id="data_agendamento_descarga" required>
                 </div>
                 <div class="form-group">
                     <label for="status">Status da Carga</label>

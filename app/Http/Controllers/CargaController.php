@@ -32,7 +32,7 @@ class CargaController extends Controller
             'data_agendamento_descarga' => 'required|date',
             'cliente' => 'required',
             'valor_frete' => 'required|numeric',
-            'status' => 'required|string|in:Pendente,Comprometida',
+            'status' => 'required|string|in:Pendente,Comprometida,Cancelada,Declinada,Retirada'
         ]);
 
         Carga::create($request->all());
@@ -56,7 +56,7 @@ class CargaController extends Controller
             'data_agendamento_descarga' => 'required|date',
             'cliente' => 'required',
             'valor_frete' => 'required|numeric',
-            'status' => 'required|string|in:Pendente,Comprometida',
+            'status' => 'required|string|in:Pendente,Comprometida,Cancelada,Declinada,Retirada',
         ]);
 
         $carga->update($request->all());

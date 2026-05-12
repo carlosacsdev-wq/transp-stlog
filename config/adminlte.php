@@ -316,17 +316,17 @@ return [
             'text' => 'Programação',
             'url'  => 'cargas',
             'icon' => 'fas fa-fw fa-box',
+        ],[
+            'text' => 'Carregamento',
+            'url'  => 'carregamentos',
+            'icon' => 'fas fa-fw fa-file-invoice',
         ],
         [
             'text' => 'Conta',
             'url'  => 'contas',
             'icon' => 'fas fa-fw fa-money-check-alt',
         ],
-        [
-            'text' => 'Carregamento',
-            'url'  => 'carregamentos',
-            'icon' => 'fas fa-fw fa-file-invoice',
-        ],
+        
         ['header' => 'OCORRÊNCIA'],
         [
             'text' => 'Viagem',

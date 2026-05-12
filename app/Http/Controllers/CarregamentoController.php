@@ -27,9 +27,10 @@ class CarregamentoController extends Controller
         $request->validate([
             'cte' => 'nullable|string|max:255',
             'mdfe' => 'nullable|string|max:255',
+            'data_carregamento' => 'nullable|date',
         ]);
 
-        $carregamento->update($request->only(['cte', 'mdfe']));
+        $carregamento->update($request->only(['cte', 'mdfe', 'data_carregamento']));
 
         return redirect()->route('carregamentos.index')->with('success', 'Documentos salvos com sucesso.');
     }

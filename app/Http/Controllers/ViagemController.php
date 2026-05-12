@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Viagem;
+use App\Models\Carga;
 use App\Models\Motorista;
 use App\Models\Veiculo;
 
@@ -11,7 +11,10 @@ class ViagemController extends Controller
 {
     public function index()
     {
-        $viagens = Viagem::with(['motorista', 'veiculo'])->get();
+        $viagens = Carga::with(['motorista', 'veiculo'])
+            ->whereNotNull('cte')
+            ->where('cte', '!=', '')
+            ->get();
         return view('viagens.index', compact('viagens'));
     }
 
@@ -27,27 +30,29 @@ class ViagemController extends Controller
         $request->validate([
             'motorista_id' => 'required|exists:motoristas,id',
             'veiculo_id' => 'required|exists:veiculos,id',
-            'data_hora_carregamento' => 'required|date',
+            'data_carregamento' => 'required|date',
             'cte' => 'required',
         ]);
 
-        Viagem::create($request->all());
+        Carga::create($request->all());
         return redirect()->route('viagens.index')->with('success', 'Viagem criada com sucesso.');
     }
 
-    public function edit(Viagem $viagem)
+    public function edit(Carga $viagem)
     {
         $motoristas = Motorista::all();
         $veiculos = Veiculo::with('motorista')->get();
         return view('viagens.edit', compact('viagem', 'motoristas', 'veiculos'));
     }
 
-    public function update(Request $request, Viagem $viagem)
+    public function update(Request $request, Carga $viagem)
     {
         $request->validate([
             'motorista_id' => 'required|exists:motoristas,id',
             'veiculo_id' => 'required|exists:veiculos,id',
-            'data_hora_carregamento' => 'required|date',
+            'data_carregamento' => 'required|date',
+            'data_hora_chegada' => 'nullable|date',
+            'data_hora_descarga' => 'nullable|date',
             'cte' => 'required',
         ]);
 
@@ -55,7 +60,7 @@ class ViagemController extends Controller
         return redirect()->route('viagens.index')->with('success', 'Viagem atualizada com sucesso.');
     }
 
-    public function destroy(Viagem $viagem)
+    public function destroy(Carga $viagem)
     {
         $viagem->delete();
         return redirect()->route('viagens.index')->with('success', 'Viagem excluída com sucesso.');

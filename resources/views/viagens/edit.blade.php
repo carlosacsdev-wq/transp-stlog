@@ -35,8 +35,8 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="data_hora_carregamento">Data/Hora Carregamento</label>
-                    <input type="datetime-local" name="data_hora_carregamento" class="form-control" id="data_hora_carregamento" value="{{ date('Y-m-d\TH:i', strtotime($viagem->data_hora_carregamento)) }}" required>
+                    <label for="data_carregamento">Data/Hora Carregamento</label>
+                    <input type="datetime-local" name="data_carregamento" class="form-control" id="data_carregamento" value="{{ $viagem->data_carregamento ? date('Y-m-d\TH:i', strtotime($viagem->data_carregamento)) : '' }}" required>
                 </div>
                 <div class="form-group">
                     <label for="data_hora_chegada">Data/Hora Chegada Cliente</label>
