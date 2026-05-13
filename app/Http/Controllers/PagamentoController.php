@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Pagamento;
+use App\Models\Carga;
 use App\Models\Motorista;
 use App\Models\Veiculo;
 
@@ -11,57 +11,51 @@ class PagamentoController extends Controller
 {
     public function index()
     {
-        $pagamentos = Pagamento::with(['motorista', 'veiculo'])->paginate(10);
+        // Pega as cargas que possuem CTE (ou seja, estão prontas para pagamento)
+        $pagamentos = Carga::with(['motorista', 'veiculo'])
+            ->whereNotNull('cte')
+            ->where('cte', '!=', '')
+            ->paginate(10);
+
         return view('pagamentos.index', compact('pagamentos'));
     }
 
-    public function create()
+    public function edit($id)
     {
-        $motoristas = Motorista::all();
-        $veiculos = Veiculo::with('motorista')->get();
-        return view('pagamentos.create', compact('motoristas', 'veiculos'));
+        $pagamento = Carga::with(['motorista', 'veiculo'])->findOrFail($id);
+        return view('pagamentos.edit', compact('pagamento'));
     }
 
-    public function store(Request $request)
+    public function update(Request $request, $id)
     {
         $request->validate([
-            'motorista_id' => 'required|exists:motoristas,id',
-            'veiculo_id' => 'required|exists:veiculos,id',
-            'cte' => 'required',
-            'dt' => 'required',
             'data_pagamento' => 'required|date',
-            'valor_frete' => 'required|numeric',
+            'valor_adiantamento' => 'nullable|numeric',
+            'valor_saldo' => 'nullable|numeric',
+            'tipo_solicitacao' => 'required|string|in:Adiantamento,Saldo,Ambos,Pago',
         ]);
 
-        Pagamento::create($request->all());
-        return redirect()->route('pagamentos.index')->with('success', 'Pagamento criado com sucesso.');
-    }
+        $pagamento = Carga::findOrFail($id);
+        
+        $status = 'Solicitado (' . $request->tipo_solicitacao . ')';
+        if ($request->tipo_solicitacao == 'Pago') {
+            $status = 'Finalizado';
+        }
 
-    public function edit(Pagamento $pagamento)
-    {
-        $motoristas = Motorista::all();
-        $veiculos = Veiculo::with('motorista')->get();
-        return view('pagamentos.edit', compact('pagamento', 'motoristas', 'veiculos'));
-    }
-
-    public function update(Request $request, Pagamento $pagamento)
-    {
-        $request->validate([
-            'motorista_id' => 'required|exists:motoristas,id',
-            'veiculo_id' => 'required|exists:veiculos,id',
-            'cte' => 'required',
-            'dt' => 'required',
-            'data_pagamento' => 'required|date',
-            'valor_frete' => 'required|numeric',
+        $pagamento->update([
+            'data_pagamento' => $request->data_pagamento,
+            'valor_adiantamento' => $request->valor_adiantamento,
+            'valor_saldo' => $request->valor_saldo,
+            'tipo_solicitacao' => $request->tipo_solicitacao,
+            'status_pagamento' => $status,
         ]);
 
-        $pagamento->update($request->all());
-        return redirect()->route('pagamentos.index')->with('success', 'Pagamento atualizado com sucesso.');
+        return redirect()->route('pagamentos.index')->with('success', 'Status de pagamento atualizado com sucesso.');
     }
 
-    public function destroy(Pagamento $pagamento)
+    public function show($id)
     {
-        $pagamento->delete();
-        return redirect()->route('pagamentos.index')->with('success', 'Pagamento excluído com sucesso.');
+        $pagamento = Carga::with(['motorista.contas', 'veiculo'])->findOrFail($id);
+        return view('pagamentos.show', compact('pagamento'));
     }
 }

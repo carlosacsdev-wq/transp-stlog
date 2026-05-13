@@ -9,50 +9,53 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Listagem de Pagamentos</h3>
-            <div class="card-tools">
-                <a href="{{ route('pagamentos.create') }}" class="btn btn-primary btn-sm">Novo Pagamento</a>
-            </div>
+            <h3 class="card-title">Listagem de Pagamentos (Cargas com CTe)</h3>
         </div>
         <div class="card-body">
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        {{-- <th>ID</th> --}}
                         <th>Motorista</th>
                         <th>Veículo</th>
                         <th>CTe</th>
                         <th>DT</th>
-                        <th>Data Pagamento</th>
+                        <th>Status</th>
+                        <th>Data Pagto</th>
                         <th>Valor Frete</th>
                         <th>Adiantamento</th>
                         <th>Saldo</th>
-                        <th style="width: 80px; text-align: center;">Ações</th>
+                        <th style="width: 120px; text-align: center;">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($pagamentos as $pagamento)
                         <tr>
-                            {{-- <td>{{ $pagamento->id }}</td> --}}
                             <td>{{ $pagamento->motorista->nome ?? 'N/A' }}</td>
                             <td>{{ $pagamento->veiculo ? $pagamento->veiculo->placa_cavalo . ' / ' . $pagamento->veiculo->placa_carreta : 'N/A' }}</td>
                             <td>{{ $pagamento->cte }}</td>
-                            <td>{{ $pagamento->dt }}</td>
-                            <td>{{ $pagamento->data_pagamento }}</td>
-                            <td>R$ {{ number_format($pagamento->valor_frete, 2, ',', '.') }}</td>
-                            <td>R$ {{ number_format($pagamento->valor_adiantamento, 2, ',', '.') }}</td>
-                            <td>R$ {{ number_format($pagamento->saldo_frete, 2, ',', '.') }}</td>
+                            <td>{{ $pagamento->numero_dt }}</td>
                             <td style="text-align: center;">
-                                <a href="{{ route('pagamentos.edit', $pagamento->id) }}" class="btn btn-warning btn-sm" title="Editar">
+                                @if($pagamento->status_pagamento == 'Pendente')
+                                    <span class="badge badge-secondary">Pendente</span>
+                                @elseif(str_contains($pagamento->status_pagamento, 'Solicitado'))
+                                    <span class="badge badge-warning">{{ $pagamento->status_pagamento }}</span>
+                                @elseif($pagamento->status_pagamento == 'Finalizado')
+                                    <span class="badge badge-success">Pago</span>
+                                @else
+                                    <span class="badge badge-info">{{ $pagamento->status_pagamento }}</span>
+                                @endif
+                            </td>
+                            <td>{{ $pagamento->data_pagamento ? \Carbon\Carbon::parse($pagamento->data_pagamento)->format('d/m/Y') : '-' }}</td>
+                            <td>R$ {{ number_format($pagamento->valor_frete, 2, ',', '.') }}</td>
+                            <td>R$ {{ $pagamento->valor_adiantamento ? number_format($pagamento->valor_adiantamento, 2, ',', '.') : '-' }}</td>
+                            <td>R$ {{ $pagamento->valor_saldo ? number_format($pagamento->valor_saldo, 2, ',', '.') : '-' }}</td>
+                            <td style="text-align: center;">
+                                <a href="{{ route('pagamentos.show', $pagamento->id) }}" class="btn btn-info btn-sm" title="Detalhes Bancários">
+                                    <i class="fas fa-university"></i>
+                                </a>
+                                <a href="{{ route('pagamentos.edit', $pagamento->id) }}" class="btn btn-warning btn-sm" title="Editar Pagamento">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                {{-- <form action="{{ route('pagamentos.destroy', $pagamento->id) }}" method="POST" style="display:inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza?')" title="Excluir">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </form> --}}
                             </td>
                         </tr>
                     @endforeach
