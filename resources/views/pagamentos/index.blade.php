@@ -27,7 +27,7 @@
                         <th>Valor Frete</th>
                         <th>Adiantamento</th>
                         <th>Saldo</th>
-                        <th>Ações</th>
+                        <th style="width: 80px; text-align: center;">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,7 +42,7 @@
                             <td>R$ {{ number_format($pagamento->valor_frete, 2, ',', '.') }}</td>
                             <td>R$ {{ number_format($pagamento->valor_adiantamento, 2, ',', '.') }}</td>
                             <td>R$ {{ number_format($pagamento->saldo_frete, 2, ',', '.') }}</td>
-                            <td>
+                            <td style="text-align: center;">
                                 <a href="{{ route('pagamentos.edit', $pagamento->id) }}" class="btn btn-warning btn-sm" title="Editar">
                                     <i class="fas fa-edit"></i>
                                 </a>

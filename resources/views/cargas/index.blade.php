@@ -27,7 +27,7 @@
                     <th>Cliente</th>
                     <th>Valor Frete</th>
                     <th>Status</th>
-                    <th>Ações</th>
+                    <th style="width: 80px; text-align: center;">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -57,7 +57,7 @@
                             @endphp
                             <span class="badge badge-{{ $badgeClass }}">{{ $carga->status }}</span>
                         </td>
-                        <td>
+                        <td style="text-align: center;">
                             <a href="{{ route('cargas.edit', $carga->id) }}" class="btn btn-warning btn-sm" title="Editar">
                                 <i class="fas fa-edit"></i>
                             </a>

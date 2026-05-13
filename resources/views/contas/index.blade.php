@@ -30,7 +30,7 @@
                     <th>Agência</th>
                     <th>Conta</th>
                     <th>Chave PIX</th>
-                    <th>Ações</th>
+                    <th style="width: 80px; text-align: center;">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,7 +42,7 @@
                         <td>{{ $conta->agencia }}</td>
                         <td>{{ $conta->nro_conta }}</td>
                         <td>{{ $conta->chave_pix }}</td>
-                        <td>
+                        <td style="text-align: center;">
                             <a href="{{ route('contas.edit', $conta->id) }}" class="btn btn-warning btn-sm" title="Editar">
                                 <i class="fas fa-edit"></i>
                             </a>

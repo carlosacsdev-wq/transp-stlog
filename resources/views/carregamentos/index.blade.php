@@ -29,7 +29,7 @@
                     <th>Cliente</th>
                     <th>CT-e</th>
                     <th>MDF-e</th>
-                    <th>Ações</th>
+                    <th style="width: 80px; text-align: center;">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -44,10 +44,10 @@
                         <td>{{ $carga->cliente }}</td>
                         <td>{{ $carga->cte ?: 'Pendente' }}</td>
                         <td>{{ $carga->mdfe ?: 'Pendente' }}</td>
-                        <td>
+                        <td style="text-align: center;">
                             <a href="{{ route('carregamentos.edit', $carga->id) }}" class="btn btn-warning btn-sm"
                                 title="Editar Carregamento">
-                                <i class="fas fa-edit"></i> Editar
+                                <i class="fas fa-edit"></i>
                             </a>
                         </td>
                     </tr>

@@ -28,7 +28,7 @@
                     {{-- <th>Valor Frete</th> --}}
                     <th>CTe</th>
                     <th>Motorista</th>
-                    <th>Ações</th>
+                    <th style="width: 80px; text-align: center;">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -50,7 +50,7 @@
                         {{-- <td>R$ {{ number_format($viagem->valor_frete, 2, ',', '.') }}</td> --}}
                         <td>{{ $viagem->cte }}</td>
                         <td>{{ $viagem->motorista->nome ?? 'N/A' }}</td>
-                        <td>
+                        <td style="text-align: center;">
                             <a href="{{ route('viagens.edit', $viagem->id) }}" class="btn btn-warning btn-sm"
                                 title="Editar">
                                 <i class="fas fa-edit"></i>

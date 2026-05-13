@@ -23,7 +23,7 @@
                     <th>CPF</th>
                     <th>CNH</th>
                     <th>Telefone</th>
-                    <th>Ações</th>
+                    <th style="width: 80px; text-align: center;">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,7 +34,7 @@
                         <td>{{ $motorista->cpf }}</td>
                         <td>{{ $motorista->cnh }}</td>
                         <td>{{ $motorista->telefone }}</td>
-                        <td>
+                        <td style="text-align: center;">
                             <a href="{{ route('motoristas.edit', $motorista->id) }}" class="btn btn-warning btn-sm"
                                 title="Editar">
                                 <i class="fas fa-edit"></i>

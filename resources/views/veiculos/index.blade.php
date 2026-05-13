@@ -23,7 +23,7 @@
                     <th>Placa Cavalo</th>
                     <th>Placa Carreta</th>
                     <th>Modelo</th>
-                    <th>Ações</th>
+                    <th style="width: 80px; text-align: center;">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,7 +34,7 @@
                         <td>{{ $veiculo->placa_cavalo }}</td>
                         <td>{{ $veiculo->placa_carreta }}</td>
                         <td>{{ $veiculo->modelo }}</td>
-                        <td>
+                        <td style="text-align: center;">
                             <a href="{{ route('veiculos.edit', $veiculo->id) }}" class="btn btn-warning btn-sm"
                                 title="Editar">
                                 <i class="fas fa-edit"></i>
