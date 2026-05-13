@@ -38,13 +38,15 @@
                         <td>{{ $carga->veiculo ? $carga->veiculo->placa_cavalo . ' / ' . $carga->veiculo->placa_carreta : 'N/A' }}
                         </td>
                         <td>{{ $carga->numero_dt }}</td>
-                        <td>{{ $carga->data_carregamento ? \Carbon\Carbon::parse($carga->data_carregamento)->format('d/m/Y H:i') : 'N/A' }}</td>
-                        <td>{{ $carga->data_agendamento_descarga ? \Carbon\Carbon::parse($carga->data_agendamento_descarga)->format('d/m/Y H:i') : 'N/A' }}</td>
+                        <td>{{ $carga->data_carregamento ? \Carbon\Carbon::parse($carga->data_carregamento)->format('d/m/Y H:i') : 'N/A' }}
+                        </td>
+                        <td>{{ $carga->data_agendamento_descarga ? \Carbon\Carbon::parse($carga->data_agendamento_descarga)->format('d/m/Y H:i') : 'N/A' }}
+                        </td>
                         <td>{{ $carga->cliente }}</td>
                         <td>R$ {{ number_format($carga->valor_frete, 2, ',', '.') }}</td>
                         <td>
                             @php
-                                $badgeClass = match($carga->status) {
+                                $badgeClass = match ($carga->status) {
                                     'Comprometida' => 'success',
                                     'Pendente' => 'warning',
                                     'Cancelada' => 'danger',
@@ -59,19 +61,23 @@
                             <a href="{{ route('cargas.edit', $carga->id) }}" class="btn btn-warning btn-sm" title="Editar">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <form action="{{ route('cargas.destroy', $carga->id) }}" method="POST" style="display:inline">
+                            {{-- <form action="{{ route('cargas.destroy', $carga->id) }}" method="POST"
+                                style="display:inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza?')"
                                     title="Excluir">
                                     <i class="fas fa-trash"></i>
                                 </button>
-                            </form>
+                            </form> --}}
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+    </div>
+    <div class="card-footer clearfix">
+        {{ $cargas->links() }}
     </div>
 </div>
 @stop

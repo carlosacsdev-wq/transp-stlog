@@ -14,7 +14,7 @@ class ViagemController extends Controller
         $viagens = Carga::with(['motorista', 'veiculo'])
             ->whereNotNull('cte')
             ->where('cte', '!=', '')
-            ->get();
+            ->paginate(10);
         return view('viagens.index', compact('viagens'));
     }
 

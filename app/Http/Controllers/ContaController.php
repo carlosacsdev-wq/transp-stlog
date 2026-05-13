@@ -15,7 +15,7 @@ class ContaController extends Controller
      */
     public function index()
     {
-        $contas = Conta::with('motorista')->get();
+        $contas = Conta::with('motorista')->paginate(10);
         return view('contas.index', compact('contas'));
     }
 

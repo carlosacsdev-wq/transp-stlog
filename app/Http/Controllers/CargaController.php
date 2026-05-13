@@ -15,7 +15,7 @@ class CargaController extends Controller
             ->where(function($query) {
                 $query->whereNull('cte')->orWhere('cte', '');
             })
-            ->get();
+            ->paginate(10);
         return view('cargas.index', compact('cargas'));
     }
 

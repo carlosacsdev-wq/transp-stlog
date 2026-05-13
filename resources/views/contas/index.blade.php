@@ -46,19 +46,22 @@
                             <a href="{{ route('contas.edit', $conta->id) }}" class="btn btn-warning btn-sm" title="Editar">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <form action="{{ route('contas.destroy', $conta->id) }}" method="POST" style="display:inline">
+                            {{-- <form action="{{ route('contas.destroy', $conta->id) }}" method="POST" style="display:inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza?')"
                                     title="Excluir">
                                     <i class="fas fa-trash"></i>
                                 </button>
-                            </form>
+                            </form> --}}
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+    </div>
+    <div class="card-footer clearfix">
+        {{ $contas->links() }}
     </div>
 </div>
 @stop

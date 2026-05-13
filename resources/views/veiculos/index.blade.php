@@ -39,7 +39,7 @@
                                 title="Editar">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <form action="{{ route('veiculos.destroy', $veiculo->id) }}" method="POST"
+                            {{-- <form action="{{ route('veiculos.destroy', $veiculo->id) }}" method="POST"
                                 style="display:inline">
                                 @csrf
                                 @method('DELETE')
@@ -47,12 +47,15 @@
                                     title="Excluir">
                                     <i class="fas fa-trash"></i>
                                 </button>
-                            </form>
+                            </form> --}}
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+    </div>
+    <div class="card-footer clearfix">
+        {{ $veiculos->links() }}
     </div>
 </div>
 @stop

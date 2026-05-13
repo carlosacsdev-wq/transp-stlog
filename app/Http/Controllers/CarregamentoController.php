@@ -12,7 +12,7 @@ class CarregamentoController extends Controller
         // Busca apenas as cargas com status "Comprometida"
         $cargas = Carga::with(['motorista', 'veiculo'])
             ->where('status', 'Comprometida')
-            ->get();
+            ->paginate(10);
 
         return view('carregamentos.index', compact('cargas'));
     }

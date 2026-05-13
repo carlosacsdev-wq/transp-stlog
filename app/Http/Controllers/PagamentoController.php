@@ -11,7 +11,7 @@ class PagamentoController extends Controller
 {
     public function index()
     {
-        $pagamentos = Pagamento::with(['motorista', 'veiculo'])->get();
+        $pagamentos = Pagamento::with(['motorista', 'veiculo'])->paginate(10);
         return view('pagamentos.index', compact('pagamentos'));
     }
 

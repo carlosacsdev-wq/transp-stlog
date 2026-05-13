@@ -9,7 +9,7 @@ class VeiculoController extends Controller
 {
     public function index()
     {
-        $veiculos = Veiculo::with('motorista')->get();
+        $veiculos = Veiculo::with('motorista')->paginate(10);
         return view('veiculos.index', compact('veiculos'));
     }
 

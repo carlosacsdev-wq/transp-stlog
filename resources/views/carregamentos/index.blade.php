@@ -55,5 +55,8 @@
             </tbody>
         </table>
     </div>
+    <div class="card-footer clearfix">
+        {{ $cargas->links() }}
+    </div>
 </div>
 @stop
