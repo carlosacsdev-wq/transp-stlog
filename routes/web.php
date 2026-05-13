@@ -9,6 +9,7 @@ use App\Http\Controllers\PagamentoController;
 use App\Http\Controllers\ViagemController;
 use App\Http\Controllers\ContaController;
 use App\Http\Controllers\CarregamentoController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return redirect('/login');
@@ -25,8 +26,9 @@ Route::resource('pagamentos', PagamentoController::class);
 Route::resource('viagens', ViagemController::class)->parameters([
     'viagens' => 'viagem'
 ]);
+Route::resource('users', UserController::class);
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

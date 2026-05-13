@@ -261,7 +261,7 @@ return [
     'dashboard_url' => 'home',
     'logout_url' => 'logout',
     'login_url' => 'login',
-    'register_url' => 'register',
+    'register_url' => null,
     'password_reset_url' => 'password.request',
     'password_email_url' => 'password.email',
     'profile_url' => false,
@@ -339,6 +339,17 @@ return [
             'text' => 'Pagamento',
             'url'  => 'pagamentos',
             'icon' => 'fas fa-fw fa-credit-card',
+        ],
+        ['header' => 'CONFIGURAÇÕES'],
+        [
+            'text' => 'Usuários',
+            'url'  => 'users',
+            'icon' => 'fas fa-fw fa-users-cog',
+        ],
+        [
+            'text' => 'Sair',
+            'url'  => 'logout',
+            'icon' => 'fas fa-fw fa-sign-out-alt',
         ],
     ],
 
