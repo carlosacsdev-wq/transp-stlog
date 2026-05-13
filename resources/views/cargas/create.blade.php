@@ -13,7 +13,7 @@
                 @csrf
                 <div class="form-group">
                     <label for="motorista_id">Motorista</label>
-                    <select name="motorista_id" class="form-control" id="motorista_id" required>
+                    <select name="motorista_id" class="form-control" id="motorista_id">
                         <option value="">Selecione um motorista</option>
                         @foreach($motoristas as $motorista)
                             <option value="{{ $motorista->id }}">{{ $motorista->nome }}</option>
@@ -22,7 +22,7 @@
                 </div>
                 <div class="form-group">
                     <label for="veiculo_id">Veículo</label>
-                    <select name="veiculo_id" class="form-control" id="veiculo_id" required>
+                    <select name="veiculo_id" class="form-control" id="veiculo_id">
                         <option value="">Selecione um veículo</option>
                         @foreach($veiculos as $veiculo)
                             <option value="{{ $veiculo->id }}">{{ $veiculo->placa_cavalo }} / {{ $veiculo->placa_carreta }} ({{ $veiculo->motorista->nome }})</option>
@@ -34,12 +34,19 @@
                     <input type="text" name="numero_dt" class="form-control" id="numero_dt" placeholder="Número do DT" required>
                 </div>
                 <div class="form-group">
-                    <label for="data_carregamento">Data de Carregamento</label>
-                    <input type="date" name="data_carregamento" class="form-control" id="data_carregamento" required>
+                    <label for="data_carregamento">Data/Hora de Carregamento</label>
+                    <input type="datetime-local" name="data_carregamento" class="form-control" id="data_carregamento" required>
                 </div>
                 <div class="form-group">
-                    <label for="data_agendamento_descarga">Data de Agendamento de Descarga</label>
-                    <input type="date" name="data_agendamento_descarga" class="form-control" id="data_agendamento_descarga" required>
+                    <label for="data_agendamento_descarga">Data/Hora de Agendamento de Descarga</label>
+                    <input type="datetime-local" name="data_agendamento_descarga" class="form-control" id="data_agendamento_descarga" required>
+                </div>
+                <div class="form-group">
+                    <label for="status">Status da Carga</label>
+                    <select name="status" class="form-control" id="status" required>
+                        <option value="Pendente">Pendente</option>
+                        <option value="Comprometida">Comprometida</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="cliente">Nome do Cliente</label>

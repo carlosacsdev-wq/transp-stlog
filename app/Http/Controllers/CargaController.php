@@ -11,7 +11,11 @@ class CargaController extends Controller
 {
     public function index()
     {
-        $cargas = Carga::with(['motorista', 'veiculo'])->get();
+        $cargas = Carga::with(['motorista', 'veiculo'])
+            ->where(function($query) {
+                $query->whereNull('cte')->orWhere('cte', '');
+            })
+            ->paginate(10);
         return view('cargas.index', compact('cargas'));
     }
 
@@ -25,13 +29,14 @@ class CargaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'motorista_id' => 'required|exists:motoristas,id',
-            'veiculo_id' => 'required|exists:veiculos,id',
+            'motorista_id' => 'nullable|exists:motoristas,id',
+            'veiculo_id' => 'nullable|exists:veiculos,id',
             'numero_dt' => 'required',
             'data_carregamento' => 'required|date',
             'data_agendamento_descarga' => 'required|date',
             'cliente' => 'required',
             'valor_frete' => 'required|numeric',
+            'status' => 'required|string|in:Pendente,Comprometida,Cancelada,Declinada,Retirada'
         ]);
 
         Carga::create($request->all());
@@ -48,13 +53,14 @@ class CargaController extends Controller
     public function update(Request $request, Carga $carga)
     {
         $request->validate([
-            'motorista_id' => 'required|exists:motoristas,id',
-            'veiculo_id' => 'required|exists:veiculos,id',
+            'motorista_id' => 'nullable|exists:motoristas,id',
+            'veiculo_id' => 'nullable|exists:veiculos,id',
             'numero_dt' => 'required',
             'data_carregamento' => 'required|date',
             'data_agendamento_descarga' => 'required|date',
             'cliente' => 'required',
             'valor_frete' => 'required|numeric',
+            'status' => 'required|string|in:Pendente,Comprometida,Cancelada,Declinada,Retirada',
         ]);
 
         $carga->update($request->all());

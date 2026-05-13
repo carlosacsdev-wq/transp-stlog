@@ -14,7 +14,7 @@
                 <h3 class="card-title">Bem-vindo</h3>
             </div>
             <div class="card-body">
-                <p>Você está logado no sistema de Transportadora!</p>
+                <p>Você está logado no sistema Cargas Truck!</p>
             </div>
         </div>
     </div>

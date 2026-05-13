@@ -7,6 +7,8 @@ use App\Http\Controllers\VeiculoController;
 use App\Http\Controllers\CargaController;
 use App\Http\Controllers\PagamentoController;
 use App\Http\Controllers\ViagemController;
+use App\Http\Controllers\ContaController;
+use App\Http\Controllers\CarregamentoController;
 
 Route::get('/', function () {
     return redirect('/login');
@@ -15,6 +17,10 @@ Route::get('/', function () {
 Route::resource('motoristas', MotoristaController::class);
 Route::resource('veiculos', VeiculoController::class);
 Route::resource('cargas', CargaController::class);
+Route::resource('carregamentos', CarregamentoController::class)->parameters([
+    'carregamentos' => 'carregamento'
+])->only(['index', 'edit', 'update']);
+Route::resource('contas', ContaController::class);
 Route::resource('pagamentos', PagamentoController::class);
 Route::resource('viagens', ViagemController::class)->parameters([
     'viagens' => 'viagem'

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Carga extends Model
 {
-    protected $fillable = ['motorista_id', 'veiculo_id', 'numero_dt', 'data_carregamento', 'data_agendamento_descarga', 'cliente', 'valor_frete'];
+    protected $fillable = ['motorista_id', 'veiculo_id', 'numero_dt', 'data_carregamento', 'data_agendamento_descarga', 'data_hora_chegada', 'data_hora_descarga', 'cliente', 'valor_frete', 'status', 'cte', 'mdfe'];
 
     public function motorista()
     {

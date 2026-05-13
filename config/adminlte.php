@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Cargas Truck',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,8 +63,9 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => '<b>Cargas</b>Truck',
+    // 'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo_img' => 'img/empilhadeira.jpeg',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -84,13 +85,13 @@ return [
     */
 
     'auth_logo' => [
-        'enabled' => false,
+        'enabled' => true,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => 'img/cargas.png',
             'alt' => 'Auth Logo',
             'class' => '',
-            'width' => 50,
-            'height' => 50,
+            'width' => 200,
+            'height' => null,
         ],
     ],
 
@@ -311,11 +312,22 @@ return [
             'url'  => 'veiculos',
             'icon' => 'fas fa-fw fa-truck',
         ],
+
         [
-            'text' => 'Carga',
+            'text' => 'Conta',
+            'url'  => 'contas',
+            'icon' => 'fas fa-fw fa-money-check-alt',
+        ],
+        [
+            'text' => 'Programação',
             'url'  => 'cargas',
             'icon' => 'fas fa-fw fa-box',
+        ],[
+            'text' => 'Carregamento',
+            'url'  => 'carregamentos',
+            'icon' => 'fas fa-fw fa-file-invoice',
         ],
+        
         ['header' => 'OCORRÊNCIA'],
         [
             'text' => 'Viagem',
