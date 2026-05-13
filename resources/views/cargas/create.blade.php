@@ -34,6 +34,16 @@
                     <input type="text" name="numero_dt" class="form-control" id="numero_dt" placeholder="Número do DT" required>
                 </div>
                 <div class="form-group">
+                    <label for="fabrica">Fábrica</label>
+                    <select name="fabrica" class="form-control" id="fabrica" required>
+                        <option value="">Selecione uma fábrica</option>
+                        <option value="Fábrica 01">Fábrica 01</option>
+                        <option value="Fábrica 02">Fábrica 02</option>
+                        <option value="Fábrica 03">Fábrica 03</option>
+                        <option value="Fábrica 04">Fábrica 04</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="data_carregamento">Data/Hora de Carregamento</label>
                     <input type="datetime-local" name="data_carregamento" class="form-control" id="data_carregamento" required>
                 </div>

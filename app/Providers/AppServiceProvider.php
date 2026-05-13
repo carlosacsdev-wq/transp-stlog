@@ -20,5 +20,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         \Illuminate\Pagination\Paginator::useBootstrap();
+ 
+        \Illuminate\Support\Facades\Gate::define('admin', function ($user) {
+            return $user->is_admin;
+        });
     }
 }

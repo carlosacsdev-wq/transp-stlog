@@ -345,6 +345,7 @@ return [
             'text' => 'Usuários',
             'url'  => 'users',
             'icon' => 'fas fa-fw fa-users-cog',
+            'can'  => 'admin',
         ],
         [
             'text' => 'Sair',

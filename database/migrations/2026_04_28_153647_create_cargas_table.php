@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('cargas', function (Blueprint $table) {
             $table->id();
             $table->string('numero_dt');
+            $table->string('fabrica'); // indica em qual fábrica vai carregar
             $table->date('data_carregamento');
             $table->date('data_agendamento_descarga');
             $table->string('cliente');

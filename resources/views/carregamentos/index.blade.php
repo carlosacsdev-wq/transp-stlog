@@ -12,6 +12,27 @@
         <h3 class="card-title">Controle de carregamentos</h3>
     </div>
     <div class="card-body">
+        <form action="{{ route('carregamentos.index') }}" method="GET" class="mb-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="fabrica">Filtrar por Fábrica</label>
+                        <select name="fabrica" id="fabrica" class="form-control" onchange="this.form.submit()">
+                            <option value="">Todas as fábricas</option>
+                            <option value="Fábrica 01" {{ request('fabrica') == 'Fábrica 01' ? 'selected' : '' }}>Fábrica 01</option>
+                            <option value="Fábrica 02" {{ request('fabrica') == 'Fábrica 02' ? 'selected' : '' }}>Fábrica 02</option>
+                            <option value="Fábrica 03" {{ request('fabrica') == 'Fábrica 03' ? 'selected' : '' }}>Fábrica 03</option>
+                            <option value="Fábrica 04" {{ request('fabrica') == 'Fábrica 04' ? 'selected' : '' }}>Fábrica 04</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2 d-flex align-items-end">
+                    <div class="form-group">
+                        <a href="{{ route('carregamentos.index') }}" class="btn btn-secondary">Limpar</a>
+                    </div>
+                </div>
+            </div>
+        </form>
         @if(session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
@@ -56,7 +77,7 @@
         </table>
     </div>
     <div class="card-footer clearfix">
-        {{ $cargas->links() }}
+        {{ $cargas->appends(request()->query())->links() }}
     </div>
 </div>
 @stop

@@ -40,6 +40,16 @@
                     required>
             </div>
             <div class="form-group">
+                <label for="fabrica">Fábrica</label>
+                <select name="fabrica" class="form-control" id="fabrica" required>
+                    <option value="">Selecione uma fábrica</option>
+                    <option value="Fábrica 01" {{ $carga->fabrica == 'Fábrica 01' ? 'selected' : '' }}>Fábrica 01</option>
+                    <option value="Fábrica 02" {{ $carga->fabrica == 'Fábrica 02' ? 'selected' : '' }}>Fábrica 02</option>
+                    <option value="Fábrica 03" {{ $carga->fabrica == 'Fábrica 03' ? 'selected' : '' }}>Fábrica 03</option>
+                    <option value="Fábrica 04" {{ $carga->fabrica == 'Fábrica 04' ? 'selected' : '' }}>Fábrica 04</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="data_carregamento">Data/Hora de Carregamento</label>
                 <input type="datetime-local" name="data_carregamento" class="form-control" id="data_carregamento"
                     value="{{ $carga->data_carregamento ? date('Y-m-d\TH:i', strtotime($carga->data_carregamento)) : '' }}" required>

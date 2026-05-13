@@ -7,12 +7,16 @@ use Illuminate\Http\Request;
 
 class CarregamentoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // Busca apenas as cargas com status "Comprometida"
-        $cargas = Carga::with(['motorista', 'veiculo'])
-            ->where('status', 'Comprometida')
-            ->paginate(10);
+        $query = Carga::with(['motorista', 'veiculo'])
+            ->where('status', 'Comprometida');
+
+        if ($request->filled('fabrica')) {
+            $query->where('fabrica', $request->fabrica);
+        }
+
+        $cargas = $query->paginate(10);
 
         return view('carregamentos.index', compact('cargas'));
     }
