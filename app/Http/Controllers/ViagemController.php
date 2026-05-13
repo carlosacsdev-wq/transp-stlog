@@ -9,12 +9,17 @@ use App\Models\Veiculo;
 
 class ViagemController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $viagens = Carga::with(['motorista', 'veiculo'])
+        $query = Carga::with(['motorista', 'veiculo'])
             ->whereNotNull('cte')
-            ->where('cte', '!=', '')
-            ->paginate(10);
+            ->where('cte', '!=', '');
+ 
+        if ($request->filled('fabrica')) {
+            $query->where('fabrica', $request->fabrica);
+        }
+ 
+        $viagens = $query->paginate(10);
         return view('viagens.index', compact('viagens'));
     }
 
