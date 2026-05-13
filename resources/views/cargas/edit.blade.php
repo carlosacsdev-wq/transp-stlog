@@ -43,21 +43,27 @@
                 <label for="fabrica">Fábrica</label>
                 <select name="fabrica" class="form-control" id="fabrica" required>
                     <option value="">Selecione uma fábrica</option>
-                    <option value="Fábrica 01" {{ $carga->fabrica == 'Fábrica 01' ? 'selected' : '' }}>Fábrica 01</option>
-                    <option value="Fábrica 02" {{ $carga->fabrica == 'Fábrica 02' ? 'selected' : '' }}>Fábrica 02</option>
-                    <option value="Fábrica 03" {{ $carga->fabrica == 'Fábrica 03' ? 'selected' : '' }}>Fábrica 03</option>
-                    <option value="Fábrica 04" {{ $carga->fabrica == 'Fábrica 04' ? 'selected' : '' }}>Fábrica 04</option>
+                    <option value="Alagoinhas" {{ $carga->fabrica == 'Alagoinhas' ? 'selected' : '' }}>Alagoinhas
+                    </option>
+                    <option value="Igarassu" {{ $carga->fabrica == 'Igarassu' ? 'selected' : '' }}>Igarassu
+                    </option>
+                    <option value="Benevides" {{ $carga->fabrica == 'Benevides' ? 'selected' : '' }}>Benevides
+                    </option>
+                    <option value="Caxias" {{ $carga->fabrica == 'Caxias' ? 'selected' : '' }}>Caxias</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="data_carregamento">Data/Hora de Carregamento</label>
                 <input type="datetime-local" name="data_carregamento" class="form-control" id="data_carregamento"
-                    value="{{ $carga->data_carregamento ? date('Y-m-d\TH:i', strtotime($carga->data_carregamento)) : '' }}" required>
+                    value="{{ $carga->data_carregamento ? date('Y-m-d\TH:i', strtotime($carga->data_carregamento)) : '' }}"
+                    required>
             </div>
             <div class="form-group">
                 <label for="data_agendamento_descarga">Data/Hora de Agendamento de Descarga</label>
-                <input type="datetime-local" name="data_agendamento_descarga" class="form-control" id="data_agendamento_descarga"
-                    value="{{ $carga->data_agendamento_descarga ? date('Y-m-d\TH:i', strtotime($carga->data_agendamento_descarga)) : '' }}" required>
+                <input type="datetime-local" name="data_agendamento_descarga" class="form-control"
+                    id="data_agendamento_descarga"
+                    value="{{ $carga->data_agendamento_descarga ? date('Y-m-d\TH:i', strtotime($carga->data_agendamento_descarga)) : '' }}"
+                    required>
             </div>
             <div class="form-group">
                 <label for="status">Status da Carga</label>
