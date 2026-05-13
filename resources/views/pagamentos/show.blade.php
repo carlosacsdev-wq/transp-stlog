@@ -3,7 +3,7 @@
 @section('title', 'Detalhes para Pagamento')
 
 @section('content_header')
-    <h1>Detalhes do Motorista para Pagamento</h1>
+    <h1>Detalhes do Pagamento</h1>
 @stop
 
 @section('content')
