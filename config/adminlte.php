@@ -261,7 +261,7 @@ return [
     'dashboard_url' => 'home',
     'logout_url' => 'logout',
     'login_url' => 'login',
-    'register_url' => 'register',
+    'register_url' => null,
     'password_reset_url' => 'password.request',
     'password_email_url' => 'password.email',
     'profile_url' => false,
@@ -322,11 +322,13 @@ return [
             'text' => 'Programação',
             'url'  => 'cargas',
             'icon' => 'fas fa-fw fa-box',
-        ],[
+        ],
+        [
             'text' => 'Carregamento',
             'url'  => 'carregamentos',
             'icon' => 'fas fa-fw fa-file-invoice',
         ],
+        
         
         ['header' => 'OCORRÊNCIA'],
         [
@@ -334,11 +336,28 @@ return [
             'url'  => 'viagens',
             'icon' => 'fas fa-fw fa-road',
         ],
+        [
+            'text' => 'Canhoto',
+            'url'  => 'canhotos',
+            'icon' => 'fas fa-fw fa-file-contract',
+        ],
         ['header' => 'FINANCEIRO'],
         [
             'text' => 'Pagamento',
             'url'  => 'pagamentos',
             'icon' => 'fas fa-fw fa-credit-card',
+        ],
+        ['header' => 'CONFIGURAÇÕES'],
+        [
+            'text' => 'Usuários',
+            'url'  => 'users',
+            'icon' => 'fas fa-fw fa-users-cog',
+            'can'  => 'admin',
+        ],
+        [
+            'text' => 'Sair',
+            'url'  => 'logout',
+            'icon' => 'fas fa-fw fa-sign-out-alt',
         ],
     ],
 
@@ -495,4 +514,5 @@ return [
     */
 
     'livewire' => false,
+
 ];

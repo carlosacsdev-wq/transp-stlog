@@ -22,6 +22,7 @@
                     <th>Motorista</th>
                     <th>Veículo</th>
                     <th>DT</th>
+                    <th>Fábrica</th>
                     <th>Carregamento</th>
                     <th>Descarga Agendada</th>
                     <th>Cliente</th>
@@ -38,6 +39,7 @@
                         <td>{{ $carga->veiculo ? $carga->veiculo->placa_cavalo . ' / ' . $carga->veiculo->placa_carreta : 'N/A' }}
                         </td>
                         <td>{{ $carga->numero_dt }}</td>
+                        <td>{{ $carga->fabrica ?? 'N/A' }}</td>
                         <td>{{ $carga->data_carregamento ? \Carbon\Carbon::parse($carga->data_carregamento)->format('d/m/Y H:i') : 'N/A' }}
                         </td>
                         <td>{{ $carga->data_agendamento_descarga ? \Carbon\Carbon::parse($carga->data_agendamento_descarga)->format('d/m/Y H:i') : 'N/A' }}
