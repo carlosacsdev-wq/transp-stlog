@@ -9,7 +9,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Listagem de Contas</h3>
+        <h3 class="card-title">Relação das Contas dos Motoristas</h3>
         <div class="card-tools">
             <a href="{{ route('contas.create') }}" class="btn btn-primary btn-sm">Nova Conta</a>
         </div>
@@ -46,7 +46,8 @@
                             <a href="{{ route('contas.edit', $conta->id) }}" class="btn btn-warning btn-sm" title="Editar">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            {{-- <form action="{{ route('contas.destroy', $conta->id) }}" method="POST" style="display:inline">
+                            {{-- <form action="{{ route('contas.destroy', $conta->id) }}" method="POST"
+                                style="display:inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza?')"

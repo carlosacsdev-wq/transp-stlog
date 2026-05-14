@@ -9,7 +9,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Listagem de Veículos</h3>
+        <h3 class="card-title">Relação de Veículos</h3>
         <div class="card-tools">
             <a href="{{ route('veiculos.create') }}" class="btn btn-primary btn-sm">Novo Veículo</a>
         </div>

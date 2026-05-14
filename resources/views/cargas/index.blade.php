@@ -9,7 +9,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Listagem cargas programadas</h3>
+        <h3 class="card-title">Cargas programadas</h3>
         @if(auth()->user()->is_admin)
             <div class="card-tools">
                 <a href="{{ route('cargas.create') }}" class="btn btn-primary btn-sm">Nova Carga</a>

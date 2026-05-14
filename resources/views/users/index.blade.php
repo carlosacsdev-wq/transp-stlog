@@ -9,11 +9,19 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Listagem de Usuários</h3>
+        <h3 class="card-title">Relação de Usuários do Sistema</h3>
+
         <div class="card-tools">
             <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm">Novo Usuário</a>
         </div>
     </div>
+    {{-- <p style="font-size: 12px;color: red;margin-left: 20px; margin-right: 20px;margin-top: 5px;">Em caso de
+        desligamento do usuário,
+        deve-se excluir o mesmo
+        no
+        cadastro
+        de usuários.
+    </p> --}}
     <div class="card-body">
         @if(session('success'))
             <div class="alert alert-success">

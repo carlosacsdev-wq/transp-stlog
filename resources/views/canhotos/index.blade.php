@@ -9,7 +9,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Cargas com Descarga Realizada</h3>
+            <h3 class="card-title">Acompanhamento de entrega documentação</h3>
         </div>
         <div class="card-body">
             <table class="table table-bordered table-striped">

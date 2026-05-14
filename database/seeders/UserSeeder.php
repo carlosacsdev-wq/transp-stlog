@@ -14,21 +14,21 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::updateOrCreate(
-            ['email' => 'admin@cargastruck.com.br'],
+            ['email' => 'brunojorge@cargastruck.com.br'],
             [
-                'name' => 'Administrador',
-                'password' => Hash::make('admin123'),
+                'name' => 'Bruno Jorge',
+                'password' => Hash::make('brunojorge123'),
                 'is_admin' => true,
             ]
         );
 
-        User::updateOrCreate(
-            ['email' => 'operacional@cargastruck.com.br'],
-            [
-                'name' => 'Operacional',
-                'password' => Hash::make('operacional123'),
-                'is_admin' => false,
-            ]
-        );
+        // User::updateOrCreate(
+        //     ['email' => 'operacional@cargastruck.com.br'],
+        //     [
+        //         'name' => 'Operacional',
+        //         'password' => Hash::make('operacional123'),
+        //         'is_admin' => false,
+        //     ]
+        // );
     }
 }
