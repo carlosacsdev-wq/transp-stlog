@@ -60,6 +60,9 @@
                 <select name="status" class="form-control" id="status" required>
                     <option value="Pendente">Pendente</option>
                     <option value="Comprometida">Comprometida</option>
+                    <option value="Cancelada">Cancelada</option>
+                    <option value="Declinada">Declinada</option>
+                    <option value="Retirada">Retirada</option>
                 </select>
             </div>
             <div class="form-group">

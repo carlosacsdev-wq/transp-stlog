@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Carga;
 
 class HomeController extends Controller
 {
@@ -23,6 +23,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $atendidas = Carga::whereNotNull('data_hora_descarga')->count();
+        $canceladas = Carga::where('status', 'Cancelada')->count();
+        $declinadas = Carga::where('status', 'Declinada')->count();
+        $retiradas = Carga::where('status', 'Retirada')->count();
+
+        return view('home', compact('atendidas', 'canceladas', 'declinadas', 'retiradas'));
     }
 }

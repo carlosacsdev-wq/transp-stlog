@@ -10,9 +10,11 @@
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">Listagem cargas programadas</h3>
-        <div class="card-tools">
-            <a href="{{ route('cargas.create') }}" class="btn btn-primary btn-sm">Nova Carga</a>
-        </div>
+        @if(auth()->user()->is_admin)
+            <div class="card-tools">
+                <a href="{{ route('cargas.create') }}" class="btn btn-primary btn-sm">Nova Carga</a>
+            </div>
+        @endif
     </div>
     <div class="card-body">
         <table class="table table-bordered table-striped">
