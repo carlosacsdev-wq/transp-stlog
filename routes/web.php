@@ -1,6 +1,7 @@
 <?php
  
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
  
 use App\Http\Controllers\MotoristaController;
 use App\Http\Controllers\VeiculoController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\ViagemController;
 use App\Http\Controllers\ContaController;
 use App\Http\Controllers\CarregamentoController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CanhotoController;
  
 Route::get('/', function () {
     return redirect('/login');
@@ -31,6 +33,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('viagens', ViagemController::class)->parameters([
         'viagens' => 'viagem'
     ]);
+    Route::resource('canhotos', CanhotoController::class)->only(['index', 'edit', 'update']);
  
     // Somente administradores podem gerenciar usuários
     Route::middleware(['admin'])->group(function () {

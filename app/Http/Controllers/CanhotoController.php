@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCanhotoRequest;
-use App\Http\Requests\UpdateCanhotoRequest;
-use App\Models\Canhoto;
+use Illuminate\Http\Request;
+use App\Models\Carga;
 
 class CanhotoController extends Controller
 {
@@ -13,54 +12,39 @@ class CanhotoController extends Controller
      */
     public function index()
     {
-        //
-    }
+        // Listamos as cargas que já foram descarregadas (onde data_hora_descarga não é nulo)
+        // ou que possuem CTE emitido, pois o canhoto é o comprovante do CTE.
+        $canhotos = Carga::with(['motorista', 'veiculo'])
+            ->whereNotNull('data_hora_descarga')
+            ->orderBy('data_hora_descarga', 'desc')
+            ->paginate(10);
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreCanhotoRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Canhoto $canhoto)
-    {
-        //
+        return view('canhotos.index', compact('canhotos'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Canhoto $canhoto)
+    public function edit($id)
     {
-        //
+        $canhoto = Carga::findOrFail($id);
+        return view('canhotos.edit', compact('canhoto'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCanhotoRequest $request, Canhoto $canhoto)
+    public function update(Request $request, $id)
     {
-        //
-    }
+        $request->validate([
+            'status_canhoto' => 'required|in:Pendente,Entregue',
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Canhoto $canhoto)
-    {
-        //
+        $carga = Carga::findOrFail($id);
+        $carga->update([
+            'status_canhoto' => $request->status_canhoto,
+        ]);
+
+        return redirect()->route('canhotos.index')->with('success', 'Status do canhoto atualizado com sucesso.');
     }
 }

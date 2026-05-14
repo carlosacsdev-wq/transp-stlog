@@ -22,7 +22,8 @@
                         <th>Valor Frete</th>
                         <th>Adiantamento</th>
                         <th>Saldo</th>
-                        <th>Status</th>
+                        <th>Canhoto</th>
+                        <th>Status Pagto</th>
                         <th style="width: 120px; text-align: center;">Ações</th>
                     </tr>
                 </thead>
@@ -37,6 +38,13 @@
                             <td>R$ {{ number_format($pagamento->valor_frete, 2, ',', '.') }}</td>
                             <td>R$ {{ $pagamento->valor_adiantamento ? number_format($pagamento->valor_adiantamento, 2, ',', '.') : '-' }}</td>
                             <td>R$ {{ $pagamento->valor_saldo ? number_format($pagamento->valor_saldo, 2, ',', '.') : '-' }}</td>
+                            <td style="text-align: center;">
+                                @if($pagamento->status_canhoto == 'Entregue')
+                                    <span class="badge badge-success">Entregue</span>
+                                @else
+                                    <span class="badge badge-warning">Pendente</span>
+                                @endif
+                            </td>
                             <td style="text-align: center;">
                                 @if($pagamento->status_pagamento == 'Pendente')
                                     <span class="badge badge-secondary">Pendente</span>

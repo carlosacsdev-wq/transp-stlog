@@ -10,9 +10,9 @@
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">Listagem de Viagens</h3>
-        <div class="card-tools">
+        {{-- <div class="card-tools">
             <a href="{{ route('viagens.create') }}" class="btn btn-primary btn-sm">Nova Viagem</a>
-        </div>
+        </div> --}}
     </div>
     <div class="card-body">
         <form action="{{ route('viagens.index') }}" method="GET" class="mb-4">
@@ -22,9 +22,12 @@
                         <label for="fabrica">Filtrar por Fábrica</label>
                         <select name="fabrica" id="fabrica" class="form-control" onchange="this.form.submit()">
                             <option value="">Todas as fábricas</option>
-                            <option value="Alagoinhas" {{ request('fabrica') == 'Alagoinhas' ? 'selected' : '' }}>Alagoinhas</option>
-                            <option value="Igarassu" {{ request('fabrica') == 'Igarassu' ? 'selected' : '' }}>Igarassu</option>
-                            <option value="Benevides" {{ request('fabrica') == 'Benevides' ? 'selected' : '' }}>Benevides</option>
+                            <option value="Alagoinhas" {{ request('fabrica') == 'Alagoinhas' ? 'selected' : '' }}>
+                                Alagoinhas</option>
+                            <option value="Igarassu" {{ request('fabrica') == 'Igarassu' ? 'selected' : '' }}>Igarassu
+                            </option>
+                            <option value="Benevides" {{ request('fabrica') == 'Benevides' ? 'selected' : '' }}>Benevides
+                            </option>
                             <option value="Caxias" {{ request('fabrica') == 'Caxias' ? 'selected' : '' }}>Caxias</option>
                         </select>
                     </div>

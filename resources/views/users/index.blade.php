@@ -1,11 +1,11 @@
 @extends('adminlte::page')
- 
+
 @section('title', 'Usuários')
- 
+
 @section('content_header')
 <h1>Usuários</h1>
 @stop
- 
+
 @section('content')
 <div class="card">
     <div class="card-header">
@@ -25,13 +25,13 @@
                 {{ session('error') }}
             </div>
         @endif
- 
+
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th>Nome</th>
                     <th>E-mail</th>
-                    <th style="width: 80px; text-align: center;">Ações</th>
+                    <th style="width: 100px; text-align: center;">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,20 +39,18 @@
                     <tr>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
-                        <td style="text-align: center;">
-                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm"
-                                title="Editar">
+                        <td style="text-align: center; white-space: nowrap;">
+                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm" title="Editar">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            {{-- <form action="{{ route('users.destroy', $user->id) }}" method="POST"
-                                style="display:inline">
+                            <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza?')"
                                     title="Excluir">
                                     <i class="fas fa-trash"></i>
                                 </button>
-                            </form> --}}
+                            </form>
                         </td>
                     </tr>
                 @endforeach

@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Carga;
-use App\Models\Motorista;
-use App\Models\Veiculo;
 
 class PagamentoController extends Controller
 {
@@ -36,7 +34,14 @@ class PagamentoController extends Controller
         ]);
 
         $pagamento = Carga::findOrFail($id);
-        
+
+        // Regra de negócio: Saldo só pode ser solicitado se o canhoto estiver entregue
+        if (in_array($request->tipo_solicitacao, ['Saldo', 'Ambos']) && $pagamento->status_canhoto != 'Entregue') {
+            return redirect()->back()
+                ->withInput()
+                ->withErrors(['tipo_solicitacao' => 'O pagamento do Saldo não pode ser solicitado sem que o canhoto esteja marcado como Entregue.']);
+        }
+
         $status = 'Solicitado (' . $request->tipo_solicitacao . ')';
         if ($request->tipo_solicitacao == 'Pago') {
             $status = 'Finalizado';

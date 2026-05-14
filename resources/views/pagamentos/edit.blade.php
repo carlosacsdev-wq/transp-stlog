@@ -34,13 +34,25 @@
                         
                         <div class="form-group">
                             <label for="tipo_solicitacao">O que está sendo solicitado?</label>
-                            <select name="tipo_solicitacao" class="form-control" id="tipo_solicitacao" required>
+                            <select name="tipo_solicitacao" class="form-control @error('tipo_solicitacao') is-invalid @enderror" id="tipo_solicitacao" required>
                                 <option value="">Selecione...</option>
                                 <option value="Adiantamento" {{ $pagamento->tipo_solicitacao == 'Adiantamento' ? 'selected' : '' }}>Adiantamento</option>
                                 <option value="Saldo" {{ $pagamento->tipo_solicitacao == 'Saldo' ? 'selected' : '' }}>Saldo Restante</option>
                                 <option value="Ambos" {{ $pagamento->tipo_solicitacao == 'Ambos' ? 'selected' : '' }}>Ambos (Total)</option>
                                 <option value="Pago" {{ $pagamento->tipo_solicitacao == 'Pago' ? 'selected' : '' }}>Marcar como PAGO (Finalizado)</option>
                             </select>
+                            @error('tipo_solicitacao')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
+                            <div class="mt-2">
+                                <strong>Status do Canhoto:</strong> 
+                                @if($pagamento->status_canhoto == 'Entregue')
+                                    <span class="badge badge-success">Entregue</span>
+                                @else
+                                    <span class="badge badge-warning">Pendente</span>
+                                    <small class="text-danger d-block mt-1"><i class="fas fa-exclamation-triangle"></i> O Saldo não pode ser solicitado até que o canhoto seja entregue.</small>
+                                @endif
+                            </div>
                         </div>
 
                         <div class="form-group">

@@ -322,17 +322,24 @@ return [
             'text' => 'Programação',
             'url'  => 'cargas',
             'icon' => 'fas fa-fw fa-box',
-        ],[
+        ],
+        [
             'text' => 'Carregamento',
             'url'  => 'carregamentos',
             'icon' => 'fas fa-fw fa-file-invoice',
         ],
+        
         
         ['header' => 'OCORRÊNCIA'],
         [
             'text' => 'Viagem',
             'url'  => 'viagens',
             'icon' => 'fas fa-fw fa-road',
+        ],
+        [
+            'text' => 'Canhoto',
+            'url'  => 'canhotos',
+            'icon' => 'fas fa-fw fa-file-contract',
         ],
         ['header' => 'FINANCEIRO'],
         [
@@ -507,4 +514,5 @@ return [
     */
 
     'livewire' => false,
+
 ];

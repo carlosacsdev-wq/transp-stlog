@@ -12,17 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('cargas', function (Blueprint $table) {
-            $table->string('fabrica')->nullable()->after('numero_dt');
+            $table->string('status_canhoto')->default('Pendente')->after('status_pagamento');
         });
     }
- 
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
         Schema::table('cargas', function (Blueprint $table) {
-            $table->dropColumn('fabrica');
+            $table->dropColumn('status_canhoto');
         });
     }
 };

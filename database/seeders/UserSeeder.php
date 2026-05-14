@@ -21,5 +21,14 @@ class UserSeeder extends Seeder
                 'is_admin' => true,
             ]
         );
+
+        User::updateOrCreate(
+            ['email' => 'operacional@cargastruck.com.br'],
+            [
+                'name' => 'Operacional',
+                'password' => Hash::make('operacional123'),
+                'is_admin' => false,
+            ]
+        );
     }
 }
