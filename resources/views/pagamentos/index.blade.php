@@ -16,14 +16,13 @@
                 <thead>
                     <tr>
                         <th>Motorista</th>
-                        <th>Veículo</th>
                         <th>CTe</th>
                         <th>DT</th>
-                        <th>Status</th>
-                        <th>Data Pagto</th>
+                        {{-- <th>Data Pagto</th> --}}
                         <th>Valor Frete</th>
                         <th>Adiantamento</th>
                         <th>Saldo</th>
+                        <th>Status</th>
                         <th style="width: 120px; text-align: center;">Ações</th>
                     </tr>
                 </thead>
@@ -31,9 +30,13 @@
                     @foreach($pagamentos as $pagamento)
                         <tr>
                             <td>{{ $pagamento->motorista->nome ?? 'N/A' }}</td>
-                            <td>{{ $pagamento->veiculo ? $pagamento->veiculo->placa_cavalo . ' / ' . $pagamento->veiculo->placa_carreta : 'N/A' }}</td>
+                            {{-- <td>{{ $pagamento->veiculo ? $pagamento->veiculo->placa_cavalo . ' / ' . $pagamento->veiculo->placa_carreta : 'N/A' }}</td> --}}
                             <td>{{ $pagamento->cte }}</td>
-                            <td>{{ $pagamento->numero_dt }}</td>
+                            <td>{{ $pagamento->numero_dt }}</td>                            
+                            {{-- <td>{{ $pagamento->data_pagamento ? \Carbon\Carbon::parse($pagamento->data_pagamento)->format('d/m/Y') : '-' }}</td> --}}
+                            <td>R$ {{ number_format($pagamento->valor_frete, 2, ',', '.') }}</td>
+                            <td>R$ {{ $pagamento->valor_adiantamento ? number_format($pagamento->valor_adiantamento, 2, ',', '.') : '-' }}</td>
+                            <td>R$ {{ $pagamento->valor_saldo ? number_format($pagamento->valor_saldo, 2, ',', '.') : '-' }}</td>
                             <td style="text-align: center;">
                                 @if($pagamento->status_pagamento == 'Pendente')
                                     <span class="badge badge-secondary">Pendente</span>
@@ -45,10 +48,6 @@
                                     <span class="badge badge-info">{{ $pagamento->status_pagamento }}</span>
                                 @endif
                             </td>
-                            <td>{{ $pagamento->data_pagamento ? \Carbon\Carbon::parse($pagamento->data_pagamento)->format('d/m/Y') : '-' }}</td>
-                            <td>R$ {{ number_format($pagamento->valor_frete, 2, ',', '.') }}</td>
-                            <td>R$ {{ $pagamento->valor_adiantamento ? number_format($pagamento->valor_adiantamento, 2, ',', '.') : '-' }}</td>
-                            <td>R$ {{ $pagamento->valor_saldo ? number_format($pagamento->valor_saldo, 2, ',', '.') : '-' }}</td>
                             <td style="text-align: center;">
                                 <a href="{{ route('pagamentos.show', $pagamento->id) }}" class="btn btn-info btn-sm" title="Detalhes Bancários">
                                     <i class="fas fa-university"></i>
