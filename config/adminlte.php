@@ -354,11 +354,11 @@ return [
             'icon' => 'fas fa-fw fa-users-cog',
             'can'  => 'admin',
         ],
-        [
-            'text' => 'Sair',
-            'url'  => 'logout',
-            'icon' => 'fas fa-fw fa-sign-out-alt',
-        ],
+        // [
+        //     'text' => 'Sair',
+        //     'url'  => 'logout',
+        //     'icon' => 'fas fa-fw fa-sign-out-alt',
+        // ],
     ],
 
     /*
