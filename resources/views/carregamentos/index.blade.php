@@ -72,6 +72,10 @@
                         <td>{{ $carga->cte ?: 'Pendente' }}</td>
                         <td>{{ $carga->mdfe ?: 'Pendente' }}</td>
                         <td style="text-align: center;">
+                            <a href="{{ route('carregamentos.coleta', $carga->id) }}" target="_blank"
+                                class="btn btn-info btn-sm" title="Gerar Ordem de Coleta">
+                                <i class="fas fa-print"></i>
+                            </a>
                             <a href="{{ route('carregamentos.edit', $carga->id) }}" class="btn btn-warning btn-sm"
                                 title="Editar Carregamento">
                                 <i class="fas fa-edit"></i>

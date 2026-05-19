@@ -38,4 +38,10 @@ class CarregamentoController extends Controller
 
         return redirect()->route('carregamentos.index')->with('success', 'Documentos salvos com sucesso.');
     }
+
+    public function coleta(Carga $carregamento)
+    {
+        $carregamento->load(['motorista', 'veiculo']);
+        return view('carregamentos.coleta', ['carga' => $carregamento]);
+    }
 }
