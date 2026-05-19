@@ -28,6 +28,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('carregamentos', CarregamentoController::class)->parameters([
         'carregamentos' => 'carregamento'
     ])->only(['index', 'edit', 'update']);
+    Route::get('carregamentos/{carregamento}/coleta', [CarregamentoController::class, 'coleta'])->name('carregamentos.coleta');
     Route::resource('contas', ContaController::class);
     Route::resource('pagamentos', PagamentoController::class);
     Route::resource('viagens', ViagemController::class)->parameters([
