@@ -19,7 +19,7 @@
                         <th>DT</th>
                         <th>Motorista</th>
                         <th>Veículo</th>
-                        <th>Data Descarga</th>
+                        {{-- <th>Data Descarga</th> --}}
                         <th>Status Canhoto</th>
                         <th style="width: 80px; text-align: center;">Ações</th>
                     </tr>
@@ -31,7 +31,7 @@
                             <td>{{ $carga->numero_dt }}</td>
                             <td>{{ $carga->motorista->nome ?? 'N/A' }}</td>
                             <td>{{ $carga->veiculo ? $carga->veiculo->placa_cavalo . ' / ' . $carga->veiculo->placa_carreta : 'N/A' }}</td>
-                            <td>{{ $carga->data_hora_descarga ? \Carbon\Carbon::parse($carga->data_hora_descarga)->format('d/m/Y H:i') : '-' }}</td>
+                            {{-- <td>{{ $carga->data_hora_descarga ? \Carbon\Carbon::parse($carga->data_hora_descarga)->format('d/m/Y H:i') : '-' }}</td> --}}
                             <td style="text-align: center;">
                                 @if($carga->status_canhoto == 'Entregue')
                                     <span class="badge badge-success">Entregue</span>

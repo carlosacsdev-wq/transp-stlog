@@ -25,10 +25,10 @@
                     <th>Veículo</th>
                     <th>DT</th>
                     <th>Fábrica</th>
-                    <th>Carregamento</th>
-                    <th>Descarga Agendada</th>
+                    <th>Data Carreg.</th>
+                    <th>Data Agend.</th>
                     <th>Cliente</th>
-                    <th>Valor Frete</th>
+                    <th>Vr. Frete</th>
                     <th>Status</th>
                     <th style="width: 80px; text-align: center;">Ações</th>
                 </tr>
