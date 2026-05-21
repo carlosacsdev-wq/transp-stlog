@@ -41,8 +41,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('users', UserController::class);
     });
  
-    Route::match(['get', 'post'], 'logout', function () {
-        auth()->logout();
-        return redirect('/login');
-    })->name('logout');
+    // Route::match(['get', 'post'], 'logout', function () {
+    //     auth()->logout();
+    //     return redirect('/login');
+    // })->name('logout');
 });

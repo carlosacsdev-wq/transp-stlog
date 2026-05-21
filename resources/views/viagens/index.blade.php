@@ -45,11 +45,11 @@
                     {{-- <th>ID</th> --}}
                     <th>DT</th>
                     <th>Fábrica</th>
-                    <th>Carregamento</th>
+                    <th>Data Carreg.</th>
                     <th>Cliente</th>
                     <th>Veículo</th>
-                    <th>Chegada</th>
-                    <th>Descarga</th>
+                    <th>Data Chegada</th>
+                    <th>Data Descarga</th>
                     {{-- <th>Valor Frete</th> --}}
                     <th>CTe</th>
                     <th>Motorista</th>

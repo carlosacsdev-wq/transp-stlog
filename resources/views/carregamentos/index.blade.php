@@ -49,8 +49,8 @@
                     <th>Motorista</th>
                     <th>Veículo</th>
                     <th>DT</th>
-                    <th>Carregamento</th>
-                    <th>Descarga Agendada</th>
+                    <th>Data Carreg.</th>
+                    <th>Data Agend.</th>
                     <th>Cliente</th>
                     <th>CT-e</th>
                     <th>MDF-e</th>
