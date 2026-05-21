@@ -53,13 +53,13 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="data_carregamento">Data/Hora de Carregamento</label>
+                <label for="data_carregamento">Data de Carreg.</label>
                 <input type="datetime-local" name="data_carregamento" class="form-control" id="data_carregamento"
                     value="{{ $carga->data_carregamento ? date('Y-m-d\TH:i', strtotime($carga->data_carregamento)) : '' }}"
                     required>
             </div>
             <div class="form-group">
-                <label for="data_agendamento_descarga">Data/Hora de Agendamento de Descarga</label>
+                <label for="data_agendamento_descarga">Data de Agend.</label>
                 <input type="datetime-local" name="data_agendamento_descarga" class="form-control"
                     id="data_agendamento_descarga"
                     value="{{ $carga->data_agendamento_descarga ? date('Y-m-d\TH:i', strtotime($carga->data_agendamento_descarga)) : '' }}"
