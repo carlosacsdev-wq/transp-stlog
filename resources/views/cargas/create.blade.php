@@ -57,7 +57,7 @@
             </div>
             <div class="form-group">
                 <label for="status">Status da Carga</label>
-                <select name="status" class="form-control" id="status" required disabled>
+                <select name="status" class="form-control" id="status" required>
                     <option value="Pendente">Pendente</option>
                     <option value="Comprometida">Comprometida</option>
                     <option value="Cancelada">Cancelada</option>
