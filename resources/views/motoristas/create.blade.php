@@ -4,9 +4,9 @@
 
 @section('content_header')
 <h1>Novo Motorista</h1>
-<p style="font-size: 12px; color: rgb(200, 10, 10);">Trata-se de um cadastro minimalista, contendo apenas os dados
+{{-- <p style="font-size: 12px; color: rgb(200, 10, 10);">Trata-se de um cadastro minimalista, contendo apenas os dados
     necessarios para fins
-    demonstrativos.</p>
+    demonstrativos.</p> --}}
 @stop
 
 @section('content')
