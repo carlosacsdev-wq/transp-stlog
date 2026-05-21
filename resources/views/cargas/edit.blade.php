@@ -36,12 +36,12 @@
             </div>
             <div class="form-group">
                 <label for="numero_dt">Número do DT</label>
-                <input type="text" name="numero_dt" class="form-control" id="numero_dt" disabled
-                    value="{{ $carga->numero_dt }}" required>
+                <input type="text" name="numero_dt" class="form-control" id="numero_dt" value="{{ $carga->numero_dt }}"
+                    required>
             </div>
             <div class="form-group">
                 <label for="fabrica">Fábrica</label>
-                <select name="fabrica" class="form-control" id="fabrica" required disabled>
+                <select name="fabrica" class="form-control" id="fabrica" required>
                     <option value="">Selecione uma fábrica</option>
                     <option value="Alagoinhas" {{ $carga->fabrica == 'Alagoinhas' ? 'selected' : '' }}>Alagoinhas
                     </option>
@@ -53,17 +53,17 @@
                 </select>
             </div>
             <div class="form-group">
-                {{-- <label for="data_carregamento">Data/Hora de Carregamento</label>
+                <label for="data_carregamento">Data/Hora de Carregamento</label>
                 <input type="datetime-local" name="data_carregamento" class="form-control" id="data_carregamento"
                     value="{{ $carga->data_carregamento ? date('Y-m-d\TH:i', strtotime($carga->data_carregamento)) : '' }}"
-                    required> --}}
+                    required>
             </div>
             <div class="form-group">
-                {{-- <label for="data_agendamento_descarga">Data/Hora de Agendamento de Descarga</label>
+                <label for="data_agendamento_descarga">Data/Hora de Agendamento de Descarga</label>
                 <input type="datetime-local" name="data_agendamento_descarga" class="form-control"
                     id="data_agendamento_descarga"
                     value="{{ $carga->data_agendamento_descarga ? date('Y-m-d\TH:i', strtotime($carga->data_agendamento_descarga)) : '' }}"
-                    required> --}}
+                    required>
             </div>
             <div class="form-group">
                 <label for="status">Status da Carga</label>
@@ -77,14 +77,14 @@
                 </select>
             </div>
             <div class="form-group">
-                {{-- <label for="cliente">Nome do Cliente</label>
+                <label for="cliente">Nome do Cliente</label>
                 <input type="text" name="cliente" class="form-control" id="cliente" value="{{ $carga->cliente }}"
-                    required> --}}
+                    required>
             </div>
             <div class="form-group">
-                {{-- <label for="valor_frete">Valor do Frete (Motorista)</label>
+                <label for="valor_frete">Valor do Frete (Motorista)</label>
                 <input type="number" step="0.01" name="valor_frete" class="form-control" id="valor_frete"
-                    value="{{ $carga->valor_frete }}" required> --}}
+                    value="{{ $carga->valor_frete }}" required>
             </div>
             <button type="submit" class="btn btn-primary">Atualizar</button>
             <a href="{{ route('cargas.index') }}" class="btn btn-default">Cancelar</a>
