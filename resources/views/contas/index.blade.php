@@ -34,7 +34,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($contas as $conta)
+                @forelse($contas as $conta)
                     <tr>
                         {{-- <td>{{ $conta->id }}</td> --}}
                         <td>{{ $conta->motorista->nome ?? 'N/A' }}</td>
@@ -57,7 +57,11 @@
                             </form> --}}
                         </td>
                     </tr>
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="6" class="text-center">Nenhum registro encontrado.</td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>

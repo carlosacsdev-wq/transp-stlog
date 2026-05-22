@@ -25,7 +25,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($canhotos as $carga)
+                    @forelse($canhotos as $carga)
                         <tr>
                             <td>{{ $carga->cte ?? 'N/A' }}</td>
                             <td>{{ $carga->numero_dt }}</td>
@@ -45,7 +45,11 @@
                                 </a>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="6" class="text-center">Nenhum registro encontrado.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

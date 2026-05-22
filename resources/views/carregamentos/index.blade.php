@@ -58,7 +58,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($cargas as $carga)
+                @forelse($cargas as $carga)
                     <tr>
                         <td>{{ $carga->motorista->nome ?? 'N/A' }}</td>
                         <td>{{ $carga->veiculo ? $carga->veiculo->placa_cavalo . ' / ' . $carga->veiculo->placa_carreta : 'N/A' }}
@@ -82,7 +82,11 @@
                             </a>
                         </td>
                     </tr>
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="9" class="text-center">Nenhum registro encontrado.</td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>

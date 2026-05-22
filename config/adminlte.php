@@ -328,6 +328,11 @@ return [
             'url'  => 'carregamentos',
             'icon' => 'fas fa-fw fa-file-invoice',
         ],
+        [
+            'text' => 'Canhoto',
+            'url'  => 'canhotos',
+            'icon' => 'fas fa-fw fa-file-contract',
+        ],
         
         
         ['header' => 'OCORRÊNCIA'],
@@ -336,11 +341,7 @@ return [
             'url'  => 'viagens',
             'icon' => 'fas fa-fw fa-road',
         ],
-        [
-            'text' => 'Canhoto',
-            'url'  => 'canhotos',
-            'icon' => 'fas fa-fw fa-file-contract',
-        ],
+        
         ['header' => 'FINANCEIRO'],
         [
             'text' => 'Pagamento',

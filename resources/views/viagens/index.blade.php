@@ -57,7 +57,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($viagens as $viagem)
+                @forelse($viagens as $viagem)
                     <tr>
                         {{-- <td>{{ $viagem->id }}</td> --}}
                         <td>{{ $viagem->numero_dt }}</td>
@@ -92,7 +92,11 @@
                             </form> --}}
                         </td>
                     </tr>
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="10" class="text-center">Nenhum registro encontrado.</td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>

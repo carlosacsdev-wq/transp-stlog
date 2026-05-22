@@ -28,7 +28,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($pagamentos as $pagamento)
+                @forelse($pagamentos as $pagamento)
                     <tr>
                         <td>{{ $pagamento->motorista->nome ?? 'N/A' }}</td>
                         {{-- <td>{{ $pagamento->veiculo ? $pagamento->veiculo->placa_cavalo . ' / ' .
@@ -72,7 +72,11 @@
                             </a>
                         </td>
                     </tr>
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="9" class="text-center">Nenhum registro encontrado.</td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
