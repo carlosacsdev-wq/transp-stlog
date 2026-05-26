@@ -12,26 +12,48 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-        <form action="{{ route('motoristas.store') }}" method="POST">
+        <form action="{{ route('motoristas.store', ['tenant' => request()->route('tenant')]) }}" method="POST">
+
             @csrf
+
             <div class="form-group">
                 <label for="nome">Nome</label>
-                <input type="text" name="nome" class="form-control" id="nome" placeholder="Nome completo" required>
+                <input type="text" name="nome" class="form-control @error('nome') is-invalid @enderror"
+                       value="{{ old('nome') }}" required>
+                @error('nome')
+                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                @enderror
             </div>
+
             <div class="form-group">
                 <label for="cpf">CPF</label>
-                <input type="text" name="cpf" class="form-control" id="cpf" placeholder="000.000.000-00" required>
+                <input type="text" name="cpf" class="form-control @error('cpf') is-invalid @enderror"
+                       value="{{ old('cpf') }}" required>
+                @error('cpf')
+                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                @enderror
             </div>
+
             <div class="form-group">
                 <label for="cnh">CNH</label>
-                <input type="text" name="cnh" class="form-control" id="cnh" placeholder="Número da CNH">
+                <input type="text" name="cnh" class="form-control @error('cnh') is-invalid @enderror"
+                       value="{{ old('cnh') }}">
+                @error('cnh')
+                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                @enderror
             </div>
+
             <div class="form-group">
                 <label for="telefone">Telefone</label>
-                <input type="text" name="telefone" class="form-control" id="telefone" placeholder="(00) 00000-0000">
+                <input type="text" name="telefone" class="form-control @error('telefone') is-invalid @enderror"
+                       value="{{ old('telefone') }}">
+                @error('telefone')
+                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                @enderror
             </div>
+
             <button type="submit" class="btn btn-primary">Salvar</button>
-            <a href="{{ route('motoristas.index') }}" class="btn btn-default">Cancelar</a>
+            <a href="{{ route('motoristas.index', ['tenant' => request()->route('tenant')]) }}" class="btn btn-default">Cancelar</a>
         </form>
     </div>
 </div>

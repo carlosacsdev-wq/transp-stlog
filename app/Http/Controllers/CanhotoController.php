@@ -25,26 +25,26 @@ class CanhotoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit()
     {
-        $canhoto = Carga::findOrFail($id);
+        $canhoto = Carga::findOrFail(request()->route('canhoto'));
         return view('canhotos.edit', compact('canhoto'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $request->validate([
             'status_canhoto' => 'required|in:Pendente,Entregue',
         ]);
 
-        $carga = Carga::findOrFail($id);
+        $carga = Carga::findOrFail(request()->route('canhoto'));
         $carga->update([
             'status_canhoto' => $request->status_canhoto,
         ]);
 
-        return redirect()->route('canhotos.index')->with('success', 'Status do canhoto atualizado com sucesso.');
+        return redirect()->route('canhotos.index', ['tenant' => request()->route('tenant')])->with('success', 'Status do canhoto atualizado com sucesso.');
     }
 }

@@ -19,7 +19,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('contas.store') }}" method="POST">
+            <form action="{{ route('contas.store', ['tenant' => request()->route('tenant')]) }}" method="POST">
                 @csrf
                 <div class="row">
                     <div class="col-md-6 form-group">
@@ -77,7 +77,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-success">Salvar</button>
-                <a href="{{ route('contas.index') }}" class="btn btn-default">Cancelar</a>
+                <a href="{{ route('contas.index', ['tenant' => request()->route('tenant')]) }}" class="btn btn-default">Cancelar</a>
             </form>
         </div>
     </div>

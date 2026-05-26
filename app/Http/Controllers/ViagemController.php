@@ -40,18 +40,20 @@ class ViagemController extends Controller
         ]);
 
         Carga::create($request->all());
-        return redirect()->route('viagens.index')->with('success', 'Viagem criada com sucesso.');
+        return redirect()->route('viagens.index', ['tenant' => request()->route('tenant')])->with('success', 'Viagem criada com sucesso.');
     }
 
-    public function edit(Carga $viagem)
+    public function edit()
     {
+        $viagem = Carga::findOrFail(request()->route('viagem'));
         $motoristas = Motorista::all();
         $veiculos = Veiculo::with('motorista')->get();
         return view('viagens.edit', compact('viagem', 'motoristas', 'veiculos'));
     }
 
-    public function update(Request $request, Carga $viagem)
+    public function update(Request $request)
     {
+        $viagem = Carga::findOrFail(request()->route('viagem'));
         $request->validate([
             'motorista_id' => 'required|exists:motoristas,id',
             'veiculo_id' => 'required|exists:veiculos,id',
@@ -62,12 +64,13 @@ class ViagemController extends Controller
         ]);
 
         $viagem->update($request->all());
-        return redirect()->route('viagens.index')->with('success', 'Viagem atualizada com sucesso.');
+        return redirect()->route('viagens.index', ['tenant' => request()->route('tenant')])->with('success', 'Viagem atualizada com sucesso.');
     }
 
-    public function destroy(Carga $viagem)
+    public function destroy()
     {
+        $viagem = Carga::findOrFail(request()->route('viagem'));
         $viagem->delete();
-        return redirect()->route('viagens.index')->with('success', 'Viagem excluída com sucesso.');
+        return redirect()->route('viagens.index', ['tenant' => request()->route('tenant')])->with('success', 'Viagem excluída com sucesso.');
     }
 }

@@ -257,7 +257,7 @@ return [
     |
     */
 
-    'use_route_url' => true,
+    'use_route_url' => false,
     'dashboard_url' => 'home',
     'logout_url' => 'logout',
     'login_url' => 'login',
@@ -306,32 +306,38 @@ return [
             'text' => 'Motorista',
             'url'  => 'motoristas',
             'icon' => 'fas fa-fw fa-user',
+            'prefix' => 'tenant',
         ],
         [
             'text' => 'Veículo',
             'url'  => 'veiculos',
             'icon' => 'fas fa-fw fa-truck',
+            'prefix' => 'tenant',
         ],
 
         [
             'text' => 'Conta',
             'url'  => 'contas',
             'icon' => 'fas fa-fw fa-money-check-alt',
+            'prefix' => 'tenant',
         ],
         [
             'text' => 'Programação',
             'url'  => 'cargas',
             'icon' => 'fas fa-fw fa-box',
+            'prefix' => 'tenant',
         ],
         [
             'text' => 'Carregamento',
             'url'  => 'carregamentos',
             'icon' => 'fas fa-fw fa-file-invoice',
+            'prefix' => 'tenant',
         ],
         [
             'text' => 'Canhoto',
             'url'  => 'canhotos',
             'icon' => 'fas fa-fw fa-file-contract',
+            'prefix' => 'tenant',
         ],
         
         
@@ -340,6 +346,7 @@ return [
             'text' => 'Viagem',
             'url'  => 'viagens',
             'icon' => 'fas fa-fw fa-road',
+            'prefix' => 'tenant',
         ],
         
         ['header' => 'FINANCEIRO'],
@@ -347,6 +354,7 @@ return [
             'text' => 'Pagamento',
             'url'  => 'pagamentos',
             'icon' => 'fas fa-fw fa-credit-card',
+            'prefix' => 'tenant',
         ],
         ['header' => 'CONFIGURAÇÕES'],
         [
@@ -354,6 +362,7 @@ return [
             'url'  => 'users',
             'icon' => 'fas fa-fw fa-users-cog',
             'can'  => 'admin',
+            'prefix' => 'tenant',
         ],
         // [
         //     'text' => 'Sair',
@@ -376,6 +385,7 @@ return [
 
     'filters' => [
         JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class,
+        App\Menu\Filters\TenantPrefixFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\HrefFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\SearchFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\ActiveFilter::class,

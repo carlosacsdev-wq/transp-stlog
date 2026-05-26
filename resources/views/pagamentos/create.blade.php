@@ -9,7 +9,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('pagamentos.store') }}" method="POST">
+            <form action="{{ route('pagamentos.store', ['tenant' => request()->route('tenant')]) }}" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="motorista_id">Motorista</label>
@@ -54,7 +54,7 @@
                     <input type="number" step="0.01" name="saldo_frete" class="form-control" id="saldo_frete" placeholder="0.00">
                 </div>
                 <button type="submit" class="btn btn-primary">Salvar</button>
-                <a href="{{ route('pagamentos.index') }}" class="btn btn-default">Cancelar</a>
+                <a href="{{ route('pagamentos.index', ['tenant' => request()->route('tenant')]) }}" class="btn btn-default">Cancelar</a>
             </form>
         </div>
     </div>

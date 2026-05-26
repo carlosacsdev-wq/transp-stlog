@@ -9,7 +9,7 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-        <form action="{{ route('cargas.store') }}" method="POST">
+        <form action="{{ route('cargas.store', ['tenant' => request()->route('tenant')]) }}" method="POST">
             @csrf
             <div class="form-group">
                 {{-- <label for="motorista_id">Motorista</label>
@@ -76,7 +76,7 @@
                     placeholder="0.00" required>
             </div>
             <button type="submit" class="btn btn-primary">Salvar</button>
-            <a href="{{ route('cargas.index') }}" class="btn btn-default">Cancelar</a>
+            <a href="{{ route('cargas.index', ['tenant' => request()->route('tenant')]) }}" class="btn btn-default">Cancelar</a>
         </form>
     </div>
 </div>

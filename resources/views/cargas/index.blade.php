@@ -12,7 +12,7 @@
         <h3 class="card-title">Cargas programadas</h3>
         @if(auth()->user()->is_admin)
             <div class="card-tools">
-                <a href="{{ route('cargas.create') }}" class="btn btn-primary btn-sm">Nova Carga</a>
+                <a href="{{ url('/' . request()->route('tenant') . '/cargas/create') }}" class="btn btn-primary btn-sm">Nova Carga</a>
             </div>
         @endif
     </div>
@@ -62,7 +62,7 @@
                             <span class="badge badge-{{ $badgeClass }}">{{ $carga->status }}</span>
                         </td>
                         <td style="text-align: center;">
-                            <a href="{{ route('cargas.edit', $carga->id) }}" class="btn btn-warning btn-sm" title="Editar">
+                            <a href="{{ route('cargas.edit', ['tenant' => request()->route('tenant'), 'carga' => $carga->id]) }}" class="btn btn-warning btn-sm" title="Editar">
                                 <i class="fas fa-edit"></i>
                             </a>
                             {{-- <form action="{{ route('cargas.destroy', $carga->id) }}" method="POST"

@@ -40,7 +40,7 @@
                                 @endif
                             </td>
                             <td style="text-align: center;">
-                                <a href="{{ route('canhotos.edit', $carga->id) }}" class="btn btn-warning btn-sm" title="Editar Status">
+                                <a href="{{ route('canhotos.edit', ['tenant' => request()->route('tenant'), 'canhoto' => $carga->id]) }}" class="btn btn-warning btn-sm" title="Editar Status">
                                     <i class="fas fa-edit"></i>
                                 </a>
                             </td>

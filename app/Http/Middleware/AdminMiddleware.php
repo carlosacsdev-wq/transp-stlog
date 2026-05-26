@@ -8,17 +8,12 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AdminMiddleware
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  Closure(Request): (Response)  $next
-     */
     public function handle(Request $request, Closure $next): Response
     {
         if (auth()->check() && auth()->user()->is_admin) {
             return $next($request);
         }
- 
+
         return redirect('/home')->with('error', 'Você não tem permissão para acessar esta área.');
     }
 }

@@ -12,7 +12,7 @@
         <h3 class="card-title">Controle de carregamentos</h3>
     </div>
     <div class="card-body">
-        <form action="{{ route('carregamentos.index') }}" method="GET" class="mb-4">
+        <form action="{{ url('/' . request()->route('tenant') . '/carregamentos') }}" method="GET" class="mb-4">
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
@@ -32,7 +32,7 @@
                 </div>
                 <div class="col-md-2 d-flex align-items-end">
                     <div class="form-group">
-                        <a href="{{ route('carregamentos.index') }}" class="btn btn-secondary">Limpar</a>
+                        <a href="{{ url('/' . request()->route('tenant') . '/carregamentos') }}" class="btn btn-secondary">Limpar</a>
                     </div>
                 </div>
             </div>
@@ -72,11 +72,11 @@
                         <td>{{ $carga->cte ?: 'Pendente' }}</td>
                         <td>{{ $carga->mdfe ?: 'Pendente' }}</td>
                         <td style="text-align: center;">
-                            <a href="{{ route('carregamentos.coleta', $carga->id) }}" target="_blank"
+                            <a href="{{ route('carregamentos.coleta', ['tenant' => request()->route('tenant'), 'carregamento' => $carga->id]) }}" target="_blank"
                                 class="btn btn-info btn-sm" title="Gerar Ordem de Coleta">
                                 <i class="fas fa-print"></i>
                             </a>
-                            <a href="{{ route('carregamentos.edit', $carga->id) }}" class="btn btn-warning btn-sm"
+                            <a href="{{ route('carregamentos.edit', ['tenant' => request()->route('tenant'), 'carregamento' => $carga->id]) }}" class="btn btn-warning btn-sm"
                                 title="Editar Carregamento">
                                 <i class="fas fa-edit"></i>
                             </a>

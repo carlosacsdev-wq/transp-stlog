@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\BelongsToTenant;
 use Illuminate\Database\Eloquent\Model;
 
 class Motorista extends Model
 {
-    protected $fillable = ['nome', 'cpf', 'cnh', 'telefone'];
+    use BelongsToTenant;
+
+    protected $fillable = ['nome', 'cpf', 'cnh', 'telefone', 'tenant_id'];
 
     public function veiculos()
     {

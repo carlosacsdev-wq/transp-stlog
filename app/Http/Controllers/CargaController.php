@@ -40,18 +40,20 @@ class CargaController extends Controller
         ]);
 
         Carga::create($request->all());
-        return redirect()->route('cargas.index')->with('success', 'Carga criada com sucesso.');
+        return redirect()->route('cargas.index', ['tenant' => request()->route('tenant')])->with('success', 'Carga criada com sucesso.');
     }
 
-    public function edit(Carga $carga)
+    public function edit()
     {
+        $carga = Carga::findOrFail(request()->route('carga'));
         $motoristas = Motorista::all();
         $veiculos = Veiculo::with('motorista')->get();
         return view('cargas.edit', compact('carga', 'motoristas', 'veiculos'));
     }
 
-    public function update(Request $request, Carga $carga)
+    public function update(Request $request)
     {
+        $carga = Carga::findOrFail(request()->route('carga'));
         $request->validate([
             'motorista_id' => 'nullable|exists:motoristas,id',
             'veiculo_id' => 'nullable|exists:veiculos,id',
@@ -64,12 +66,13 @@ class CargaController extends Controller
         ]);
 
         $carga->update($request->all());
-        return redirect()->route('cargas.index')->with('success', 'Carga atualizada com sucesso.');
+        return redirect()->route('cargas.index', ['tenant' => request()->route('tenant')])->with('success', 'Carga atualizada com sucesso.');
     }
 
-    public function destroy(Carga $carga)
+    public function destroy()
     {
+        $carga = Carga::findOrFail(request()->route('carga'));
         $carga->delete();
-        return redirect()->route('cargas.index')->with('success', 'Carga excluída com sucesso.');
+        return redirect()->route('cargas.index', ['tenant' => request()->route('tenant')])->with('success', 'Carga excluída com sucesso.');
     }
 }

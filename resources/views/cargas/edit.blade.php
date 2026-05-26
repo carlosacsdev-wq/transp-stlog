@@ -9,7 +9,7 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-        <form action="{{ route('cargas.update', $carga->id) }}" method="POST">
+        <form action="{{ route('cargas.update', ['tenant' => request()->route('tenant'), 'carga' => $carga->id]) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="form-group">
@@ -87,7 +87,7 @@
                     value="{{ $carga->valor_frete }}" required>
             </div>
             <button type="submit" class="btn btn-primary">Atualizar</button>
-            <a href="{{ route('cargas.index') }}" class="btn btn-default">Cancelar</a>
+            <a href="{{ route('cargas.index', ['tenant' => request()->route('tenant')]) }}" class="btn btn-default">Cancelar</a>
         </form>
     </div>
 </div>

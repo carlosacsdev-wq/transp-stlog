@@ -13,7 +13,7 @@
             <div class="card-header">
                 <h3 class="card-title">Dados do Usuário</h3>
             </div>
-            <form action="{{ route('users.store') }}" method="POST">
+            <form action="{{ route('users.store', ['tenant' => request()->route('tenant')]) }}" method="POST">
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
@@ -45,7 +45,7 @@
  
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Salvar</button>
-                    <a href="{{ route('users.index') }}" class="btn btn-default float-right">Cancelar</a>
+                    <a href="{{ route('users.index', ['tenant' => request()->route('tenant')]) }}" class="btn btn-default float-right">Cancelar</a>
                 </div>
             </form>
         </div>

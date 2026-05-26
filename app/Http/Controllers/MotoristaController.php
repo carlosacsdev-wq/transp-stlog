@@ -22,32 +22,36 @@ class MotoristaController extends Controller
     {
         $request->validate([
             'nome' => 'required',
-            'cpf' => 'required|unique:motoristas',
+            'cpf' => 'required|unique:motoristas,cpf,NULL,id,tenant_id,' . auth()->user()->tenant_id,
         ]);
 
         Motorista::create($request->all());
-        return redirect()->route('motoristas.index')->with('success', 'Motorista criado com sucesso.');
+        return redirect()->route('motoristas.index', ['tenant' => request()->route('tenant')])->with('success', 'Motorista criado com sucesso.');
     }
 
-    public function edit(Motorista $motorista)
+    public function edit()
     {
+        $motorista = Motorista::findOrFail(request()->route('motorista'));
         return view('motoristas.edit', compact('motorista'));
     }
 
-    public function update(Request $request, Motorista $motorista)
+    public function update(Request $request)
     {
+        $motorista = Motorista::findOrFail(request()->route('motorista'));
+
         $request->validate([
             'nome' => 'required',
-            'cpf' => 'required|unique:motoristas,cpf,' . $motorista->id,
+            'cpf' => 'required|unique:motoristas,cpf,' . $motorista->id . ',id,tenant_id,' . auth()->user()->tenant_id,
         ]);
 
         $motorista->update($request->all());
-        return redirect()->route('motoristas.index')->with('success', 'Motorista atualizado com sucesso.');
+        return redirect()->route('motoristas.index', ['tenant' => request()->route('tenant')])->with('success', 'Motorista atualizado com sucesso.');
     }
 
-    public function destroy(Motorista $motorista)
+    public function destroy()
     {
+        $motorista = Motorista::findOrFail(request()->route('motorista'));
         $motorista->delete();
-        return redirect()->route('motoristas.index')->with('success', 'Motorista excluído com sucesso.');
+        return redirect()->route('motoristas.index', ['tenant' => request()->route('tenant')])->with('success', 'Motorista excluído com sucesso.');
     }
 }

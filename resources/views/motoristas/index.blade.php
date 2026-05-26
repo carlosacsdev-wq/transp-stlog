@@ -11,7 +11,7 @@
     <div class="card-header">
         <h3 class="card-title">Relação de Motoristas</h3>
         <div class="card-tools">
-            <a href="{{ route('motoristas.create') }}" class="btn btn-primary btn-sm">Novo Motorista</a>
+            <a href="{{ url('/' . request()->route('tenant') . '/motoristas/create') }}" class="btn btn-primary btn-sm">Novo Motorista</a>
         </div>
     </div>
     <div class="card-body">
@@ -35,7 +35,7 @@
                         <td>{{ $motorista->cnh }}</td>
                         <td>{{ $motorista->telefone }}</td>
                         <td style="text-align: center;">
-                            <a href="{{ route('motoristas.edit', $motorista->id) }}" class="btn btn-warning btn-sm"
+                            <a href="{{ route('motoristas.edit', ['tenant' => request()->route('tenant'), 'motorista' => $motorista->id]) }}" class="btn btn-warning btn-sm"
                                 title="Editar">
                                 <i class="fas fa-edit"></i>
                             </a>

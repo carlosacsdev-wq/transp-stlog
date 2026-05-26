@@ -28,17 +28,19 @@ class VeiculoController extends Controller
         ]);
 
         Veiculo::create($request->all());
-        return redirect()->route('veiculos.index')->with('success', 'Veículo criado com sucesso.');
+        return redirect()->route('veiculos.index', ['tenant' => request()->route('tenant')])->with('success', 'Veículo criado com sucesso.');
     }
 
-    public function edit(Veiculo $veiculo)
+    public function edit()
     {
+        $veiculo = Veiculo::findOrFail(request()->route('veiculo'));
         $motoristas = \App\Models\Motorista::all();
         return view('veiculos.edit', compact('veiculo', 'motoristas'));
     }
 
-    public function update(Request $request, Veiculo $veiculo)
+    public function update(Request $request)
     {
+        $veiculo = Veiculo::findOrFail(request()->route('veiculo'));
         $request->validate([
             'motorista_id' => 'required',
             'placa_cavalo' => 'required',
@@ -46,12 +48,13 @@ class VeiculoController extends Controller
         ]);
 
         $veiculo->update($request->all());
-        return redirect()->route('veiculos.index')->with('success', 'Veículo atualizado com sucesso.');
+        return redirect()->route('veiculos.index', ['tenant' => request()->route('tenant')])->with('success', 'Veículo atualizado com sucesso.');
     }
 
-    public function destroy(Veiculo $veiculo)
+    public function destroy()
     {
+        $veiculo = Veiculo::findOrFail(request()->route('veiculo'));
         $veiculo->delete();
-        return redirect()->route('veiculos.index')->with('success', 'Veículo excluído com sucesso.');
+        return redirect()->route('veiculos.index', ['tenant' => request()->route('tenant')])->with('success', 'Veículo excluído com sucesso.');
     }
 }

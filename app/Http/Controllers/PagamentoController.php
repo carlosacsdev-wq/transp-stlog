@@ -18,13 +18,13 @@ class PagamentoController extends Controller
         return view('pagamentos.index', compact('pagamentos'));
     }
 
-    public function edit($id)
+    public function edit()
     {
-        $pagamento = Carga::with(['motorista', 'veiculo'])->findOrFail($id);
+        $pagamento = Carga::with(['motorista', 'veiculo'])->findOrFail(request()->route('pagamento'));
         return view('pagamentos.edit', compact('pagamento'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $request->validate([
             'data_pagamento' => 'required|date',
@@ -33,7 +33,7 @@ class PagamentoController extends Controller
             'tipo_solicitacao' => 'required|string|in:Adiantamento,Saldo,Ambos,Pago',
         ]);
 
-        $pagamento = Carga::findOrFail($id);
+        $pagamento = Carga::findOrFail(request()->route('pagamento'));
 
         // Regra de negócio: Saldo só pode ser solicitado se o canhoto estiver entregue
         if (in_array($request->tipo_solicitacao, ['Saldo', 'Ambos']) && $pagamento->status_canhoto != 'Entregue') {
@@ -55,12 +55,12 @@ class PagamentoController extends Controller
             'status_pagamento' => $status,
         ]);
 
-        return redirect()->route('pagamentos.index')->with('success', 'Status de pagamento atualizado com sucesso.');
+        return redirect()->route('pagamentos.index', ['tenant' => request()->route('tenant')])->with('success', 'Status de pagamento atualizado com sucesso.');
     }
 
-    public function show($id)
+    public function show()
     {
-        $pagamento = Carga::with(['motorista.contas', 'veiculo'])->findOrFail($id);
+        $pagamento = Carga::with(['motorista.contas', 'veiculo'])->findOrFail(request()->route('pagamento'));
         return view('pagamentos.show', compact('pagamento'));
     }
 }

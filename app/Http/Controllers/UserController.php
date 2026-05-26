@@ -23,29 +23,32 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:users,email,NULL,id,tenant_id,' . auth()->user()->tenant_id,
             'password' => 'required|string|min:8|confirmed',
         ]);
- 
+
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'tenant_id' => auth()->user()->tenant_id,
         ]);
  
-        return redirect()->route('users.index')->with('success', 'Usuário criado com sucesso.');
+        return redirect()->route('users.index', ['tenant' => request()->route('tenant')])->with('success', 'Usuário criado com sucesso.');
     }
  
-    public function edit(User $user)
+    public function edit()
     {
+        $user = User::findOrFail(request()->route('user'));
         return view('users.edit', compact('user'));
     }
- 
-    public function update(Request $request, User $user)
+
+    public function update(Request $request)
     {
+        $user = User::findOrFail(request()->route('user'));
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id . ',id,tenant_id,' . auth()->user()->tenant_id,
             'password' => 'nullable|string|min:8|confirmed',
         ]);
  
@@ -58,16 +61,17 @@ class UserController extends Controller
  
         $user->save();
  
-        return redirect()->route('users.index')->with('success', 'Usuário atualizado com sucesso.');
+        return redirect()->route('users.index', ['tenant' => request()->route('tenant')])->with('success', 'Usuário atualizado com sucesso.');
     }
  
-    public function destroy(User $user)
+    public function destroy()
     {
+        $user = User::findOrFail(request()->route('user'));
         if (User::count() <= 1) {
-            return redirect()->route('users.index')->with('error', 'Não é possível excluir o único usuário do sistema.');
+            return redirect()->route('users.index', ['tenant' => request()->route('tenant')])->with('error', 'Não é possível excluir o único usuário do sistema.');
         }
  
         $user->delete();
-        return redirect()->route('users.index')->with('success', 'Usuário excluído com sucesso.');
+        return redirect()->route('users.index', ['tenant' => request()->route('tenant')])->with('success', 'Usuário excluído com sucesso.');
     }
 }

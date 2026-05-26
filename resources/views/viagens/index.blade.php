@@ -11,11 +11,11 @@
     <div class="card-header">
         <h3 class="card-title">Acompanhamento de Viagens</h3>
         {{-- <div class="card-tools">
-            <a href="{{ route('viagens.create') }}" class="btn btn-primary btn-sm">Nova Viagem</a>
+            <a href="{{ url('/' . request()->route('tenant') . '/viagens/create') }}" class="btn btn-primary btn-sm">Nova Viagem</a>
         </div> --}}
     </div>
     <div class="card-body">
-        <form action="{{ route('viagens.index') }}" method="GET" class="mb-4">
+        <form action="{{ url('/' . request()->route('tenant') . '/viagens') }}" method="GET" class="mb-4">
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
@@ -34,7 +34,7 @@
                 </div>
                 <div class="col-md-2 d-flex align-items-end">
                     <div class="form-group">
-                        <a href="{{ route('viagens.index') }}" class="btn btn-secondary">Limpar</a>
+                        <a href="{{ url('/' . request()->route('tenant') . '/viagens') }}" class="btn btn-secondary">Limpar</a>
                     </div>
                 </div>
             </div>
@@ -77,7 +77,7 @@
                         <td>{{ $viagem->cte }}</td>
                         <td>{{ $viagem->motorista->nome ?? 'N/A' }}</td>
                         <td style="text-align: center;">
-                            <a href="{{ route('viagens.edit', $viagem->id) }}" class="btn btn-warning btn-sm"
+                            <a href="{{ route('viagens.edit', ['tenant' => request()->route('tenant'), 'viagem' => $viagem->id]) }}" class="btn btn-warning btn-sm"
                                 title="Editar">
                                 <i class="fas fa-edit"></i>
                             </a>

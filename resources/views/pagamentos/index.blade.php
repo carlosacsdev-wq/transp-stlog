@@ -62,11 +62,11 @@
                             @endif
                         </td>
                         <td style="text-align: center;">
-                            <a href="{{ route('pagamentos.show', $pagamento->id) }}" class="btn btn-info btn-sm"
+                            <a href="{{ route('pagamentos.show', ['tenant' => request()->route('tenant'), 'pagamento' => $pagamento->id]) }}" class="btn btn-info btn-sm"
                                 title="Detalhes Bancários">
                                 <i class="fas fa-university"></i>
                             </a>
-                            <a href="{{ route('pagamentos.edit', $pagamento->id) }}" class="btn btn-warning btn-sm"
+                            <a href="{{ route('pagamentos.edit', ['tenant' => request()->route('tenant'), 'pagamento' => $pagamento->id]) }}" class="btn btn-warning btn-sm"
                                 title="Editar Pagamento">
                                 <i class="fas fa-edit"></i>
                             </a>

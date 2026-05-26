@@ -19,7 +19,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('contas.update', $conta->id) }}" method="POST">
+            <form action="{{ route('contas.update', ['tenant' => request()->route('tenant'), 'conta' => $conta->id]) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="row">
@@ -78,7 +78,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-success">Atualizar</button>
-                <a href="{{ route('contas.index') }}" class="btn btn-default">Cancelar</a>
+                <a href="{{ route('contas.index', ['tenant' => request()->route('tenant')]) }}" class="btn btn-default">Cancelar</a>
             </form>
         </div>
     </div>

@@ -84,7 +84,7 @@
                 </div>
             </div>
             
-            <a href="{{ route('pagamentos.index') }}" class="btn btn-default">Voltar</a>
+            <a href="{{ route('pagamentos.index', ['tenant' => request()->route('tenant')]) }}" class="btn btn-default">Voltar</a>
         </div>
     </div>
 @stop

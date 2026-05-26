@@ -9,7 +9,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('viagens.store') }}" method="POST">
+            <form action="{{ route('viagens.store', ['tenant' => request()->route('tenant')]) }}" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="motorista_id">Motorista</label>
@@ -46,7 +46,7 @@
                     <input type="text" name="cte" class="form-control" id="cte" placeholder="Número do CTe" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Salvar</button>
-                <a href="{{ route('viagens.index') }}" class="btn btn-default">Cancelar</a>
+                <a href="{{ route('viagens.index', ['tenant' => request()->route('tenant')]) }}" class="btn btn-default">Cancelar</a>
             </form>
         </div>
     </div>

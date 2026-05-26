@@ -13,7 +13,7 @@
             <div class="card-header">
                 <h3 class="card-title">Alterar Dados</h3>
             </div>
-            <form action="{{ route('users.update', $user->id) }}" method="POST">
+            <form action="{{ route('users.update', ['tenant' => request()->route('tenant'), 'user' => $user->id]) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="card-body">
@@ -47,7 +47,7 @@
  
                 <div class="card-footer">
                     <button type="submit" class="btn btn-warning">Atualizar</button>
-                    <a href="{{ route('users.index') }}" class="btn btn-default float-right">Cancelar</a>
+                    <a href="{{ route('users.index', ['tenant' => request()->route('tenant')]) }}" class="btn btn-default float-right">Cancelar</a>
                 </div>
             </form>
         </div>

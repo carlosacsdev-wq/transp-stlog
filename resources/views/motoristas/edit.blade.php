@@ -9,7 +9,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('motoristas.update', $motorista->id) }}" method="POST">
+            <form action="{{ route('motoristas.update', ['tenant' => request()->route('tenant'), 'motorista' => $motorista->id]) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="form-group">
@@ -29,7 +29,7 @@
                     <input type="text" name="telefone" class="form-control" id="telefone" value="{{ $motorista->telefone }}">
                 </div>
                 <button type="submit" class="btn btn-primary">Atualizar</button>
-                <a href="{{ route('motoristas.index') }}" class="btn btn-default">Cancelar</a>
+                <a href="{{ route('motoristas.index', ['tenant' => request()->route('tenant')]) }}" class="btn btn-default">Cancelar</a>
             </form>
         </div>
     </div>

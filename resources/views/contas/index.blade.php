@@ -11,7 +11,7 @@
     <div class="card-header">
         <h3 class="card-title">Relação das Contas dos Motoristas</h3>
         <div class="card-tools">
-            <a href="{{ route('contas.create') }}" class="btn btn-primary btn-sm">Nova Conta</a>
+            <a href="{{ url('/' . request()->route('tenant') . '/contas/create') }}" class="btn btn-primary btn-sm">Nova Conta</a>
         </div>
     </div>
     <div class="card-body">
@@ -43,7 +43,7 @@
                         <td>{{ $conta->nro_conta }}</td>
                         <td>{{ $conta->chave_pix }}</td>
                         <td style="text-align: center;">
-                            <a href="{{ route('contas.edit', $conta->id) }}" class="btn btn-warning btn-sm" title="Editar">
+                            <a href="{{ route('contas.edit', ['tenant' => request()->route('tenant'), 'conta' => $conta->id]) }}" class="btn btn-warning btn-sm" title="Editar">
                                 <i class="fas fa-edit"></i>
                             </a>
                             {{-- <form action="{{ route('contas.destroy', $conta->id) }}" method="POST"

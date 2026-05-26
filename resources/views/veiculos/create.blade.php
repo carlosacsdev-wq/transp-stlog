@@ -11,7 +11,7 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-        <form action="{{ route('veiculos.store') }}" method="POST">
+        <form action="{{ route('veiculos.store', ['tenant' => request()->route('tenant')]) }}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="motorista_id">Motorista</label>
@@ -41,7 +41,7 @@
                 <input type="text" name="marca" class="form-control" id="marca" placeholder="Marca do veículo">
             </div>
             <button type="submit" class="btn btn-primary">Salvar</button>
-            <a href="{{ route('veiculos.index') }}" class="btn btn-default">Cancelar</a>
+            <a href="{{ route('veiculos.index', ['tenant' => request()->route('tenant')]) }}" class="btn btn-default">Cancelar</a>
         </form>
     </div>
 </div>

@@ -12,7 +12,7 @@
         <h3 class="card-title">Relação de Usuários do Sistema</h3>
 
         <div class="card-tools">
-            <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm">Novo Usuário</a>
+            <a href="{{ url('/' . request()->route('tenant') . '/users/create') }}" class="btn btn-primary btn-sm">Novo Usuário</a>
         </div>
     </div>
     {{-- <p style="font-size: 12px;color: red;margin-left: 20px; margin-right: 20px;margin-top: 5px;">Em caso de
@@ -48,10 +48,10 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td style="text-align: center; white-space: nowrap;">
-                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm" title="Editar">
+                            <a href="{{ route('users.edit', ['tenant' => request()->route('tenant'), 'user' => $user->id]) }}" class="btn btn-warning btn-sm" title="Editar">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline">
+                            <form action="{{ route('users.destroy', ['tenant' => request()->route('tenant'), 'user' => $user->id]) }}" method="POST" style="display:inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza?')"

@@ -14,6 +14,26 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'admin' => \App\Http\Middleware\AdminMiddleware::class,
         ]);
+
+        $middleware->web(prepend: [
+            \App\Http\Middleware\IdentifyTenant::class,
+        ]);
+
+        $middleware->redirectGuestsTo(function (\Illuminate\Http\Request $request) {
+            $tenant = $request->route('tenant');
+            if ($tenant) {
+                return '/' . $tenant . '/login';
+            }
+            return '/login';
+        });
+
+        $middleware->redirectUsersTo(function (\Illuminate\Http\Request $request) {
+            $tenant = $request->route('tenant');
+            if ($tenant) {
+                return '/' . $tenant . '/home';
+            }
+            return '/home';
+        });
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

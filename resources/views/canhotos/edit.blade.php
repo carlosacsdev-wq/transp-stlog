@@ -13,7 +13,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Carga: {{ $canhoto->cte }} / DT: {{ $canhoto->numero_dt }}</h3>
                 </div>
-                <form action="{{ route('canhotos.update', $canhoto->id) }}" method="POST">
+                <form action="{{ route('canhotos.update', ['tenant' => request()->route('tenant'), 'canhoto' => $canhoto->id]) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="card-body">
@@ -70,7 +70,7 @@
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Salvar</button>
-                        <a href="{{ route('canhotos.index') }}" class="btn btn-default">Cancelar</a>
+                        <a href="{{ route('canhotos.index', ['tenant' => request()->route('tenant')]) }}" class="btn btn-default">Cancelar</a>
                     </div>
                 </form>
             </div>

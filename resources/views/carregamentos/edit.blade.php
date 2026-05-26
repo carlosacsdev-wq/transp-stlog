@@ -34,7 +34,7 @@
                 </div>
             </div>
 
-            <form action="{{ route('carregamentos.update', $carregamento->id) }}" method="POST">
+            <form action="{{ route('carregamentos.update', ['tenant' => request()->route('tenant'), 'carregamento' => $carregamento->id]) }}" method="POST">
                 @csrf
                 @method('PUT')
                 
@@ -57,7 +57,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">Salvar Documentos</button>
-                <a href="{{ route('carregamentos.index') }}" class="btn btn-default">Voltar</a>
+                <a href="{{ route('carregamentos.index', ['tenant' => request()->route('tenant')]) }}" class="btn btn-default">Voltar</a>
             </form>
         </div>
     </div>

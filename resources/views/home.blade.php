@@ -14,7 +14,7 @@
         <h3 class="card-title"><i class="fas fa-filter"></i> Filtros do Dashboard</h3>
     </div>
     <div class="card-body">
-        <form action="{{ route('home') }}" method="GET">
+        <form action="{{ url()->current() }}" method="GET">
             <div class="row">
                 <div class="col-md-3">
                     <div class="form-group">
@@ -59,7 +59,7 @@
             <div class="icon">
                 <i class="fas fa-check-circle"></i>
             </div>
-            <a href="{{ route('viagens.index') }}" class="small-box-footer">Ver mais <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{ url('/' . request()->route('tenant') . '/viagens') }}" class="small-box-footer">Ver mais <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
 
@@ -72,7 +72,7 @@
             <div class="icon">
                 <i class="fas fa-times-circle"></i>
             </div>
-            <a href="{{ route('cargas.index') }}" class="small-box-footer">Ver mais <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{ url('/' . request()->route('tenant') . '/cargas') }}" class="small-box-footer">Ver mais <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
 
@@ -85,7 +85,7 @@
             <div class="icon">
                 <i class="fas fa-minus-circle"></i>
             </div>
-            <a href="{{ route('cargas.index') }}" class="small-box-footer">Ver mais <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{ url('/' . request()->route('tenant') . '/cargas') }}" class="small-box-footer">Ver mais <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
 
@@ -98,7 +98,7 @@
             <div class="icon">
                 <i class="fas fa-truck-loading"></i>
             </div>
-            <a href="{{ route('cargas.index') }}" class="small-box-footer">Ver mais <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{ url('/' . request()->route('tenant') . '/cargas') }}" class="small-box-footer">Ver mais <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
 </div>

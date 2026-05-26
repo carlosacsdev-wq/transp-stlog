@@ -47,31 +47,31 @@ class ContaController extends Controller
 
         Conta::create($validatedData);
 
-        return redirect()->route('contas.index')->with('success', 'Conta cadastrada com sucesso!');
+        return redirect()->route('contas.index', ['tenant' => request()->route('tenant')])->with('success', 'Conta cadastrada com sucesso!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Conta $conta)
+    public function show()
     {
+        $conta = Conta::findOrFail(request()->route('conta'));
         //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Conta $conta)
+    public function edit()
     {
+        $conta = Conta::findOrFail(request()->route('conta'));
         $motoristas = Motorista::all();
         return view('contas.edit', compact('conta', 'motoristas'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Conta $conta)
+    public function update(Request $request)
     {
+        $conta = Conta::findOrFail(request()->route('conta'));
         $validatedData = $request->validate([
             'motorista_id' => 'required|exists:motoristas,id',
             'titular' => 'required|string|max:255',
@@ -86,15 +86,16 @@ class ContaController extends Controller
 
         $conta->update($validatedData);
 
-        return redirect()->route('contas.index')->with('success', 'Conta atualizada com sucesso!');
+        return redirect()->route('contas.index', ['tenant' => request()->route('tenant')])->with('success', 'Conta atualizada com sucesso!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Conta $conta)
+    public function destroy()
     {
+        $conta = Conta::findOrFail(request()->route('conta'));
         $conta->delete();
-        return redirect()->route('contas.index')->with('success', 'Conta excluída com sucesso!');
+        return redirect()->route('contas.index', ['tenant' => request()->route('tenant')])->with('success', 'Conta excluída com sucesso!');
     }
 }

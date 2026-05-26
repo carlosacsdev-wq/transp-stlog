@@ -28,7 +28,7 @@
                     <h3 class="card-title">Dados Financeiros</h3>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('pagamentos.update', $pagamento->id) }}" method="POST">
+                    <form action="{{ route('pagamentos.update', ['tenant' => request()->route('tenant'), 'pagamento' => $pagamento->id]) }}" method="POST">
                         @csrf
                         @method('PUT')
                         
@@ -82,7 +82,7 @@
 
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Salvar Informações</button>
-                            <a href="{{ route('pagamentos.index') }}" class="btn btn-default">Voltar</a>
+                            <a href="{{ route('pagamentos.index', ['tenant' => request()->route('tenant')]) }}" class="btn btn-default">Voltar</a>
                         </div>
                     </form>
                 </div>

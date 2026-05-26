@@ -7,21 +7,11 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index(Request $request)
     {
         $query = Carga::query();
@@ -38,13 +28,11 @@ class HomeController extends Controller
             $query->where('fabrica', $request->fabrica);
         }
 
-        // Totais para os Cards
         $atendidas = (clone $query)->whereNotNull('data_hora_descarga')->count();
         $canceladas = (clone $query)->where('status', 'Cancelada')->count();
         $declinadas = (clone $query)->where('status', 'Declinada')->count();
         $retiradas = (clone $query)->where('status', 'Retirada')->count();
 
-        // Dados para o Gráfico de Linha (Cargas Atendidas por Mês)
         $cargasAtendidasPorMes = (clone $query)
             ->whereNotNull('data_hora_descarga')
             ->selectRaw('MONTH(data_carregamento) as mes, count(*) as total')
@@ -57,7 +45,6 @@ class HomeController extends Controller
             $meses[] = $cargasAtendidasPorMes[$i] ?? 0;
         }
 
-        // Lista de Fábricas para o filtro
         $fabricas = Carga::select('fabrica')->distinct()->whereNotNull('fabrica')->pluck('fabrica');
 
         return view('home', compact(

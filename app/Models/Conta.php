@@ -2,15 +2,17 @@
 
 namespace App\Models;
 
+use App\Traits\BelongsToTenant;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Conta extends Model
 {
     /** @use HasFactory<\Database\Factories\ContaFactory> */
-    use HasFactory;
+    use HasFactory, BelongsToTenant;
 
     protected $fillable = [
+        'tenant_id',
         'motorista_id',
         'titular',
         'cpf_cnpj_titular',
