@@ -24,3 +24,7 @@ sail artisan make:model Conta -seeder
 sail artisan make:model Conta -factory
 sail artisan make:model Conta -policy
 sail artisan make:model Conta -request
+./vendor/bin/sail artisan db:seed --class=TenantSeeder
+./vendor/bin/sail artisan db:seed --class=UserSeeder
+./vendor/bin/sail artisan make:seeder TenantSeeder
+./vendor/bin/sail artisan make:seeder UserSeeder
