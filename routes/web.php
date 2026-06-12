@@ -21,6 +21,14 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
+Route::get('/login', function () {
+    $tenant = \App\Models\Tenant::where('is_active', true)->first();
+    if ($tenant) {
+        return redirect()->to('/' . $tenant->slug . '/login');
+    }
+    return redirect('/login');
+});
+
 Route::prefix('{tenant}')->group(function () {
     Route::get('/', function () {
         return redirect()->to('/' . request()->route('tenant') . '/login');
