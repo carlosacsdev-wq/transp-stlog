@@ -365,6 +365,12 @@ return [
             'prefix' => 'tenant',
         ],
         // [
+        //     'text' => 'Chat',
+        //     'url'  => 'chat',
+        //     'icon' => 'fas fa-fw fa-comments',
+        //     'prefix' => 'tenant',
+        // ],
+        // [
         //     'text' => 'Sair',
         //     'url'  => 'logout',
         //     'icon' => 'fas fa-fw fa-sign-out-alt',
