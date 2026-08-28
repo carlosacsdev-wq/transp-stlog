@@ -102,7 +102,7 @@
 
         <div id="chat-widget-body">
             <p style="margin-bottom: 20px">
-                <strong>Olá 👋, como podemos te ajudar?</strong>
+                <strong>Olá 👋, como 12 podemos te ajudar?</strong>
             </p>
         </div>
 

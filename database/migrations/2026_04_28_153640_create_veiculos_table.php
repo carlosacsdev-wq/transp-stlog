@@ -16,8 +16,18 @@ return new class extends Migration
             $table->foreignId('motorista_id')->constrained('motoristas')->onDelete('cascade');
             $table->string('placa_cavalo');
             $table->string('placa_carreta');
+            $table->string('nome_proprietario')->nullable();
+            $table->string('endereco_proprietario')->nullable();
+            $table->string('cidade')->nullable();
+            $table->string('uf')->nullable();
             $table->string('modelo')->nullable();
             $table->string('marca')->nullable();
+            $table->string('chassi')->nullable();
+            $table->string('renavam')->nullable();
+            $table->year('ano_fabricacao')->nullable();
+            $table->year('ano_modelo')->nullable();
+            $table->string('cidade_emissao')->nullable();
+            $table->string('uf_emissao')->nullable();
             $table->timestamps();
         });
     }
