@@ -18,6 +18,11 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable, BelongsToTenant;
 
+    public function conversations()
+    {
+        return $this->hasMany(Conversation::class);
+    }
+
     protected function casts(): array
     {
         return [

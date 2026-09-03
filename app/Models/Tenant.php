@@ -40,4 +40,9 @@ class Tenant extends Model
     {
         return $this->hasMany(Conta::class);
     }
+
+    public function conversations()
+    {
+        return $this->hasMany(Conversation::class);
+    }
 }

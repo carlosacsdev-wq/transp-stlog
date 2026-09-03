@@ -12,6 +12,7 @@ use App\Http\Controllers\ContaController;
 use App\Http\Controllers\CarregamentoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CanhotoController;
+use App\Http\Controllers\ChatController;
 
 Route::get('/', function () {
     $tenant = \App\Models\Tenant::where('is_active', true)->first();
@@ -57,4 +58,12 @@ Route::prefix('{tenant}')->group(function () {
             Route::resource('users', UserController::class);
         });
     });
+});
+
+Route::middleware(['auth'])->prefix('api/chat')->group(function () {
+    Route::get('conversations', [ChatController::class, 'index'])->name('chat.conversations.index');
+    Route::post('conversations', [ChatController::class, 'store'])->name('chat.conversations.store');
+    Route::get('conversations/{conversation}', [ChatController::class, 'show'])->name('chat.conversations.show');
+    Route::get('conversations/{conversation}/messages', [ChatController::class, 'messages'])->name('chat.conversations.messages');
+    Route::post('conversations/{conversation}/messages', [ChatController::class, 'sendMessage'])->name('chat.conversations.send');
 });

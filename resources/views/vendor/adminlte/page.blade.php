@@ -191,6 +191,91 @@
             }
         };
 
+        function getCsrfToken() {
+            return document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
+        }
+
+        function appendMessage(content, role = 'user') {
+            const chatBody = document.getElementById('chat-widget-body');
+            if (!chatBody) return;
+
+            const messageElement = document.createElement('p');
+            messageElement.textContent = content;
+            messageElement.style.whiteSpace = 'pre-wrap';
+
+            if (role === 'assistant') {
+                messageElement.style.color = '#fff';
+                messageElement.style.background = '#1a5928';
+                messageElement.style.marginTop = '10px';
+            } else {
+                messageElement.style.color = '#333';
+                messageElement.style.background = '#f1f1f1';
+            }
+
+            chatBody.appendChild(messageElement);
+        }
+
+        async function ensureConversation() {
+            const response = await fetch('/api/chat/conversations', {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': getCsrfToken(),
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Não foi possível carregar a conversa do usuário.');
+            }
+
+            const conversations = await response.json();
+            if (conversations && conversations.length > 0) {
+                return conversations[0].id;
+            }
+
+            const createResponse = await fetch('/api/chat/conversations', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': getCsrfToken(),
+                },
+                body: JSON.stringify({ title: 'Chat principal' }),
+            });
+
+            if (!createResponse.ok) {
+                throw new Error('Não foi possível criar a conversa do usuário.');
+            }
+
+            const createdConversation = await createResponse.json();
+            return createdConversation.id;
+        }
+
+        async function loadConversationMessages(conversationId) {
+            const response = await fetch(`/api/chat/conversations/${conversationId}/messages`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': getCsrfToken(),
+                }
+            });
+
+            if (!response.ok) {
+                return;
+            }
+
+            const messages = await response.json();
+            const chatBody = document.getElementById('chat-widget-body');
+            if (!chatBody) return;
+
+            chatBody.innerHTML = '<p style="margin-bottom: 20px"><strong>Olá 👋, como podemos te ajudar?</strong></p>';
+
+            messages.forEach((message) => {
+                if (!message || !message.content) return;
+                appendMessage(message.content, message.role === 'assistant' ? 'assistant' : 'user');
+            });
+        }
+
         function closeChatWidget() {
             const widget = document.getElementById('chat-widget-container');
             const button = document.getElementById('chat-floating-button');
@@ -198,66 +283,62 @@
             if (button) button.style.display = 'flex';
         }
 
-        function getChatId() {
-            let chatId = sessionStorage.getItem('chatId');
-            if (!chatId) {
-                chatId = 'chat_' + Math.random().toString(36).substr(2, 9);
-                sessionStorage.setItem('chatId', chatId);
-            }
-            return chatId;
-        }
-
         document.addEventListener('DOMContentLoaded', function () {
             const chatButton = document.getElementById('chat-floating-button');
             const widget = document.getElementById('chat-widget-container');
             const input = document.getElementById('chat-widget-input');
             const send = document.getElementById('chat-widget-send');
+            let currentConversationId = null;
+
+            async function initializeChat() {
+                try {
+                    currentConversationId = await ensureConversation();
+                    await loadConversationMessages(currentConversationId);
+                } catch (error) {
+                    console.error(error);
+                }
+            }
 
             if (chatButton && widget) {
                 chatButton.addEventListener('click', function () {
                     widget.style.display = 'flex';
                     chatButton.style.display = 'none';
                     if (input) input.focus();
+                    if (!currentConversationId) {
+                        initializeChat();
+                    }
                 });
             }
 
             if (send) {
-                send.addEventListener('click', function () {
+                send.addEventListener('click', async function () {
                     let message = input ? input.value : '';
                     if (message.trim() === '') return;
 
-                    let chatBody = document.getElementById('chat-widget-body');
-                    if (!chatBody) return;
+                    if (!currentConversationId) {
+                        currentConversationId = await ensureConversation();
+                    }
 
-                    let newMessage = document.createElement('p');
-                    newMessage.textContent = message;
-                    newMessage.style.color = '#333';
-                    newMessage.style.background = '#f1f1f1';
-                    chatBody.appendChild(newMessage);
+                    appendMessage(message, 'user');
 
-                    let chatId = getChatId();
-                    const webhookUrl = window.ChatWidgetConfig?.webhook?.url || '';
-                    const webhookRoute = window.ChatWidgetConfig?.webhook?.route || 'general';
-
-                    fetch(webhookUrl, {
+                    const response = await fetch(`/api/chat/conversations/${currentConversationId}/messages`, {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            chatId: chatId,
-                            message: message,
-                            route: webhookRoute,
-                        }),
-                    })
-                        .then((response) => response.json())
-                        .then((data) => {
-                            let botMessage = document.createElement('p');
-                            botMessage.innerHTML = data.output || "Sorry, I couldn't understand that.";
-                            botMessage.style.color = '#fff';
-                            botMessage.style.background = '#1a5928';
-                            botMessage.style.marginTop = '10px';
-                            chatBody.appendChild(botMessage);
-                        })
-                        .catch((error) => console.error('Error:', error));
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json',
+                            'X-CSRF-TOKEN': getCsrfToken(),
+                        },
+                        body: JSON.stringify({ message: message }),
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Não foi possível enviar a mensagem para o assistente.');
+                    }
+
+                    const data = await response.json();
+                    if (data.output) {
+                        appendMessage(data.output, 'assistant');
+                    }
 
                     if (input) input.value = '';
                 });
@@ -270,6 +351,8 @@
                     }
                 });
             }
+
+            initializeChat();
         });
     </script>
 @stop
