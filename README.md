@@ -28,3 +28,27 @@ sail artisan make:model Conta -request
 ./vendor/bin/sail artisan db:seed --class=UserSeeder
 ./vendor/bin/sail artisan make:seeder TenantSeeder
 ./vendor/bin/sail artisan make:seeder UserSeeder
+
+## arquivos que foram criados para o chat 
+
+carlos@debian:~/projetos/transp-stlog$ git status
+On branch chat
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   app/Models/Tenant.php
+        modified:   app/Models/User.php
+        modified:   config/app.php
+        modified:   config/services.php
+        modified:   resources/views/chat/chat.blade.php
+        modified:   resources/views/vendor/adminlte/page.blade.php
+        modified:   routes/web.php
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        app/Http/Controllers/ChatController.php
+        app/Models/ChatMessage.php
+        app/Models/Conversation.php
+        database/migrations/2026_08_28_000001_create_chat_conversations_table.php
+        database/migrations/2026_08_28_000002_create_chat_messages_table.php
+        tests/Feature/ChatConversationIsolationTest.php

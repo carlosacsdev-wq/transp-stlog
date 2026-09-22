@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('data_nascimento')->nullable();
             $table->string('nome_mae');
             $table->string('nome_pai')->nullable();
-            $table->date('rg')->nullable();
+            $table->string('rg')->nullable();
             $table->date('data_emissao_rg')->nullable();
             $table->string('cpf')->unique();
             $table->string('cnh')->nullable();

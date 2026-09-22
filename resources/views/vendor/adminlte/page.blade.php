@@ -213,6 +213,8 @@
             }
 
             chatBody.appendChild(messageElement);
+            // Rola automaticamente para a última mensagem
+            chatBody.scrollTop = chatBody.scrollHeight;
         }
 
         async function ensureConversation() {
