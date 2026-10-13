@@ -22,7 +22,18 @@
                     <th>Motorista</th>
                     <th>Placa Cavalo</th>
                     <th>Placa Carreta</th>
-                    <th>Modelo</th>
+                    <!-- <th>Proprietário</th> -->
+                    <!-- <th>Endereço do Proprietário</th> -->
+                    <!-- <th>Cidade</th> -->
+                    <!-- <th>UF</th> -->
+                    <!-- <th>Modelo</th> -->
+                    <!-- <th>Marca</th> -->
+                    <!-- <th>Chassi</th> -->
+                    <!-- <th>Renavam</th> -->
+                    <!-- <th>Ano de Fabricação</th> -->
+                    <!-- <th>Ano do Modelo</th> -->
+                    <!-- <th>Cidade de Emissão</th> -->
+                    <!-- <th>UF de Emissão</th> -->
                     <th style="width: 80px; text-align: center;">Ações</th>
                 </tr>
             </thead>
@@ -33,7 +44,6 @@
                         <td>{{ $veiculo->motorista->nome }}</td>
                         <td>{{ $veiculo->placa_cavalo }}</td>
                         <td>{{ $veiculo->placa_carreta }}</td>
-                        <td>{{ $veiculo->modelo }}</td>
                         <td style="text-align: center;">
                             <a href="{{ route('veiculos.edit', ['tenant' => request()->route('tenant'), 'veiculo' => $veiculo->id]) }}" class="btn btn-warning btn-sm"
                                 title="Editar">
@@ -52,7 +62,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="text-center">Nenhum registro encontrado.</td>
+                        <td colspan="4" class="text-center">Nenhum registro encontrado.</td>
                     </tr>
                 @endforelse
             </tbody>

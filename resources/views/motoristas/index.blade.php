@@ -20,9 +20,25 @@
                 <tr>
                     {{-- <th>ID</th> --}}
                     <th>Nome</th>
+                    <!-- <th>Apelido</th> -->
+                    <!-- <th>Data de Nascimento</th> -->
+                    <!-- <th>Nome da Mãe</th> -->
+                    <!-- <th>Nome do Pai</th> -->
+                    <!-- <th>RG</th> -->
+                    <!-- <th>Data de Emissão do RG</th> -->
                     <th>CPF</th>
-                    <th>CNH</th>
+                    <!-- <th>CNH</th> -->
+                    <!-- <th>Endereço</th> -->
+                    <!-- <th>Bairro</th> -->
+                    <!-- <th>Cidade</th> -->
+                    <!-- <th>Estado</th> -->
                     <th>Telefone</th>
+                    <!-- <th>Contato Pessoal 1</th> -->
+                    <!-- <th>Contato Pessoal 2</th> -->
+                    <!-- <th>Contato Pessoal 3</th> -->
+                    <!-- <th>Contato Empresa 1</th> -->
+                    <!-- <th>Contato Empresa 2</th> -->
+                    <!-- <th>Contato Empresa 3</th> -->
                     <th style="width: 80px; text-align: center;">Ações</th>
                 </tr>
             </thead>
@@ -32,7 +48,6 @@
                         {{-- <td>{{ $motorista->id }}</td> --}}
                         <td>{{ $motorista->nome }}</td>
                         <td>{{ $motorista->cpf }}</td>
-                        <td>{{ $motorista->cnh }}</td>
                         <td>{{ $motorista->telefone }}</td>
                         <td style="text-align: center;">
                             <a href="{{ route('motoristas.edit', ['tenant' => request()->route('tenant'), 'motorista' => $motorista->id]) }}" class="btn btn-warning btn-sm"
@@ -52,7 +67,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="text-center">Nenhum registro encontrado.</td>
+                        <td colspan="4" class="text-center">Nenhum registro encontrado.</td>
                     </tr>
                 @endforelse
             </tbody>
