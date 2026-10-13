@@ -22,6 +22,7 @@ class MotoristaController extends Controller
     {
         $request->validate([
             'nome' => 'required',
+            'nome_mae' => 'required|string|max:255',
             'cpf' => 'required|unique:motoristas,cpf,NULL,id,tenant_id,' . auth()->user()->tenant_id,
         ]);
 
@@ -41,6 +42,7 @@ class MotoristaController extends Controller
 
         $request->validate([
             'nome' => 'required',
+            'nome_mae' => 'required|string|max:255',
             'cpf' => 'required|unique:motoristas,cpf,' . $motorista->id . ',id,tenant_id,' . auth()->user()->tenant_id,
         ]);
 
