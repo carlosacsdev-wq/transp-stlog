@@ -22,9 +22,9 @@ class VeiculoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'motorista_id' => 'required',
-            'placa_cavalo' => 'required',
-            'placa_carreta' => 'required',
+            'motorista_id' => 'required|exists:motoristas,id',
+            'tipo' => 'required|in:cavalo,carreta',
+            'placa' => 'required|string|max:255',
         ]);
 
         Veiculo::create($request->all());
@@ -42,9 +42,9 @@ class VeiculoController extends Controller
     {
         $veiculo = Veiculo::findOrFail(request()->route('veiculo'));
         $request->validate([
-            'motorista_id' => 'required',
-            'placa_cavalo' => 'required',
-            'placa_carreta' => 'required',
+            'motorista_id' => 'required|exists:motoristas,id',
+            'tipo' => 'required|in:cavalo,carreta',
+            'placa' => 'required|string|max:255',
         ]);
 
         $veiculo->update($request->all());

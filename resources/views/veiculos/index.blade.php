@@ -20,8 +20,8 @@
                 <tr>
                     {{-- <th>ID</th> --}}
                     <th>Motorista</th>
-                    <th>Placa Cavalo</th>
-                    <th>Placa Carreta</th>
+                    <th>Tipo</th>
+                    <th>Placa</th>
                     <!-- <th>Proprietário</th> -->
                     <!-- <th>Endereço do Proprietário</th> -->
                     <!-- <th>Cidade</th> -->
@@ -42,8 +42,8 @@
                     <tr>
                         {{-- <td>{{ $veiculo->id }}</td> --}}
                         <td>{{ $veiculo->motorista->nome }}</td>
-                        <td>{{ $veiculo->placa_cavalo }}</td>
-                        <td>{{ $veiculo->placa_carreta }}</td>
+                        <td>{{ ucfirst($veiculo->tipo) }}</td>
+                        <td>{{ $veiculo->placa }}</td>
                         <td style="text-align: center;">
                             <a href="{{ route('veiculos.edit', ['tenant' => request()->route('tenant'), 'veiculo' => $veiculo->id]) }}" class="btn btn-warning btn-sm"
                                 title="Editar">

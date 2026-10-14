@@ -10,7 +10,7 @@ class Veiculo extends Model
     use BelongsToTenant;
 
     protected $fillable = [
-        'motorista_id', 'placa_cavalo', 'placa_carreta', 'nome_proprietario', 'endereco_proprietario',
+        'motorista_id', 'tipo', 'placa', 'nome_proprietario', 'endereco_proprietario',
         'cidade', 'uf', 'modelo', 'marca', 'chassi', 'renavam', 'ano_fabricacao', 'ano_modelo',
         'cidade_emissao', 'uf_emissao', 'tenant_id',
     ];

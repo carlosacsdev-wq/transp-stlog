@@ -27,7 +27,7 @@
                     <strong>Motorista:</strong> {{ $carregamento->motorista->nome ?? 'N/A' }}
                 </div>
                 <div class="col-md-4">
-                    <strong>Veículo:</strong> {{ $carregamento->veiculo ? $carregamento->veiculo->placa_cavalo . ' / ' . $carregamento->veiculo->placa_carreta : 'N/A' }}
+                    <strong>Veículo:</strong> {{ $carregamento->veiculo ? ucfirst($carregamento->veiculo->tipo) . ' - ' . $carregamento->veiculo->placa : 'N/A' }}
                 </div>
                 <div class="col-md-4">
                     <strong>Cliente:</strong> {{ $carregamento->cliente }}

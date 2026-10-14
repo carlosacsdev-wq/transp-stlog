@@ -31,8 +31,7 @@
                 @forelse($pagamentos as $pagamento)
                     <tr>
                         <td>{{ $pagamento->motorista->nome ?? 'N/A' }}</td>
-                        {{-- <td>{{ $pagamento->veiculo ? $pagamento->veiculo->placa_cavalo . ' / ' .
-                            $pagamento->veiculo->placa_carreta : 'N/A' }}</td> --}}
+                        {{-- <td>{{ $pagamento->veiculo ? ucfirst($pagamento->veiculo->tipo) . ' - ' . $pagamento->veiculo->placa : 'N/A' }}</td> --}}
                         <td>{{ $pagamento->cte }}</td>
                         <td>{{ $pagamento->numero_dt }}</td>
                         {{-- <td>{{ $pagamento->data_pagamento ?

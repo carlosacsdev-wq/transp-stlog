@@ -61,7 +61,7 @@
                 @forelse($cargas as $carga)
                     <tr>
                         <td>{{ $carga->motorista->nome ?? 'N/A' }}</td>
-                        <td>{{ $carga->veiculo ? $carga->veiculo->placa_cavalo . ' / ' . $carga->veiculo->placa_carreta : 'N/A' }}
+                        <td>{{ $carga->veiculo ? ucfirst($carga->veiculo->tipo) . ' - ' . $carga->veiculo->placa : 'N/A' }}
                         </td>
                         <td>{{ $carga->numero_dt }}</td>
                         <td>{{ $carga->data_carregamento ? \Carbon\Carbon::parse($carga->data_carregamento)->format('d/m/Y H:i') : 'N/A' }}

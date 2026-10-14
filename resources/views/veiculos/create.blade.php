@@ -23,14 +23,17 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="placa_cavalo">Placa Cavalo</label>
-                <input type="text" name="placa_cavalo" class="form-control" id="placa_cavalo" placeholder="ABC-1234"
-                    value="{{ old('placa_cavalo') }}" required>
+                <label for="tipo">Tipo de Veículo</label>
+                <select name="tipo" class="form-control" id="tipo" required>
+                    <option value="">Selecione o tipo</option>
+                    <option value="cavalo" {{ old('tipo') == 'cavalo' ? 'selected' : '' }}>Cavalo</option>
+                    <option value="carreta" {{ old('tipo') == 'carreta' ? 'selected' : '' }}>Carreta</option>
+                </select>
             </div>
             <div class="form-group">
-                <label for="placa_carreta">Placa Carreta</label>
-                <input type="text" name="placa_carreta" class="form-control" id="placa_carreta" placeholder="XYZ-5678"
-                    value="{{ old('placa_carreta') }}" required>
+                <label for="placa">Placa</label>
+                <input type="text" name="placa" class="form-control" id="placa" placeholder="ABC-1234"
+                    value="{{ old('placa') }}" required>
             </div>
             <div class="form-group">
                 <label for="nome_proprietario">Nome do Proprietário</label>

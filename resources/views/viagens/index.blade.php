@@ -66,7 +66,7 @@
                         </td>
                         <td>{{ $viagem->cliente }}</td>
 
-                        <td>{{ $viagem->veiculo ? $viagem->veiculo->placa_cavalo . ' / ' . $viagem->veiculo->placa_carreta : 'N/A' }}
+                        <td>{{ $viagem->veiculo ? ucfirst($viagem->veiculo->tipo) . ' - ' . $viagem->veiculo->placa : 'N/A' }}
                         </td>
                         <td>{{ $viagem->data_hora_chegada ? \Carbon\Carbon::parse($viagem->data_hora_chegada)->format('d/m/Y H:i') : 'Pendente' }}
                         </td>

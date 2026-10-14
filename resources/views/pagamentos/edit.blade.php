@@ -15,7 +15,7 @@
                 </div>
                 <div class="card-body">
                     <p><strong>Motorista:</strong> {{ $pagamento->motorista->nome ?? 'N/A' }}</p>
-                    <p><strong>Veículo:</strong> {{ $pagamento->veiculo ? $pagamento->veiculo->placa_cavalo : 'N/A' }}</p>
+                    <p><strong>Veículo:</strong> {{ $pagamento->veiculo ? ucfirst($pagamento->veiculo->tipo) . ' - ' . $pagamento->veiculo->placa : 'N/A' }}</p>
                     <p><strong>CTe:</strong> {{ $pagamento->cte }}</p>
                     <p><strong>DT:</strong> {{ $pagamento->numero_dt }}</p>
                     <p><strong>Valor Frete:</strong> R$ {{ number_format($pagamento->valor_frete, 2, ',', '.') }}</p>

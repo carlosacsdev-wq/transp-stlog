@@ -37,19 +37,9 @@
                             <input type="text" class="form-control" value="{{ $canhoto->motorista->nome ?? 'N/A' }}" disabled>
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Placa Cavalo</label>
-                                    <input type="text" class="form-control" value="{{ $canhoto->veiculo->placa_cavalo ?? 'N/A' }}" disabled>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Placa Carreta</label>
-                                    <input type="text" class="form-control" value="{{ $canhoto->veiculo->placa_carreta ?? 'N/A' }}" disabled>
-                                </div>
-                            </div>
+                        <div class="form-group">
+                            <label>Veículo</label>
+                            <input type="text" class="form-control" value="{{ $canhoto->veiculo ? ucfirst($canhoto->veiculo->tipo) . ' - ' . $canhoto->veiculo->placa : 'N/A' }}" disabled>
                         </div>
                         
                         <div class="form-group">

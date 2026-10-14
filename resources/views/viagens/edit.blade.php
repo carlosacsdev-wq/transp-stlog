@@ -29,7 +29,7 @@
                     <option value="">Selecione um veículo</option>
                     @foreach($veiculos as $veiculo)
                         <option value="{{ $veiculo->id }}" {{ $viagem->veiculo_id == $veiculo->id ? 'selected' : '' }}>
-                            {{ $veiculo->placa_cavalo }} / {{ $veiculo->placa_carreta }} ({{ $veiculo->motorista->nome }})
+                            {{ ucfirst($veiculo->tipo) }} - {{ $veiculo->placa }} ({{ $veiculo->motorista->nome }})
                         </option>
                     @endforeach
                 </select>

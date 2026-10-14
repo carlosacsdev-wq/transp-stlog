@@ -38,7 +38,7 @@
                     <tr>
                         {{-- <td>{{ $carga->id }}</td> --}}
                         <td>{{ $carga->motorista->nome ?? 'Indefinido' }}</td>
-                        <td>{{ $carga->veiculo ? $carga->veiculo->placa_cavalo . ' / ' . $carga->veiculo->placa_carreta : 'Indefinido' }}
+                        <td>{{ $carga->veiculo ? ucfirst($carga->veiculo->tipo) . ' - ' . $carga->veiculo->placa : 'Indefinido' }}
                         </td>
                         <td>{{ $carga->numero_dt }}</td>
                         <td>{{ $carga->fabrica ?? 'N/A' }}</td>

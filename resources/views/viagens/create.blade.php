@@ -25,7 +25,7 @@
                     <select name="veiculo_id" class="form-control" id="veiculo_id" required>
                         <option value="">Selecione um veículo</option>
                         @foreach($veiculos as $veiculo)
-                            <option value="{{ $veiculo->id }}">{{ $veiculo->placa_cavalo }} / {{ $veiculo->placa_carreta }} ({{ $veiculo->motorista->nome }})</option>
+                            <option value="{{ $veiculo->id }}">{{ ucfirst($veiculo->tipo) }} - {{ $veiculo->placa }} ({{ $veiculo->motorista->nome }})</option>
                         @endforeach
                     </select>
                 </div>
