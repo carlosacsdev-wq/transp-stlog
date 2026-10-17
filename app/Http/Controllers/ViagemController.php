@@ -11,7 +11,7 @@ class ViagemController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Carga::with(['motorista', 'veiculo'])
+        $query = Carga::with(['motorista.veiculos', 'veiculo'])
             ->whereNotNull('cte')
             ->where('cte', '!=', '');
  

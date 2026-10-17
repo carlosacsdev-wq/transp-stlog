@@ -30,7 +30,7 @@
                             <td>{{ $carga->cte ?? 'N/A' }}</td>
                             <td>{{ $carga->numero_dt }}</td>
                             <td>{{ $carga->motorista->nome ?? 'N/A' }}</td>
-                            <td>{{ $carga->veiculo ? ucfirst($carga->veiculo->tipo) . ' - ' . $carga->veiculo->placa : 'N/A' }}</td>
+                            <td>{{ optional($carga->motorista?->veiculos->firstWhere('tipo', 'cavalo'))->placa ?? 'N/A' }} / {{ optional($carga->motorista?->veiculos->firstWhere('tipo', 'carreta'))->placa ?? 'N/A' }}</td>
                             {{-- <td>{{ $carga->data_hora_descarga ? \Carbon\Carbon::parse($carga->data_hora_descarga)->format('d/m/Y H:i') : '-' }}</td> --}}
                             <td style="text-align: center;">
                                 @if($carga->status_canhoto == 'Entregue')

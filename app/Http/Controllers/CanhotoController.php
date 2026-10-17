@@ -14,7 +14,7 @@ class CanhotoController extends Controller
     {
         // Listamos as cargas que já foram descarregadas (onde data_hora_descarga não é nulo)
         // ou que possuem CTE emitido, pois o canhoto é o comprovante do CTE.
-        $canhotos = Carga::with(['motorista', 'veiculo'])
+        $canhotos = Carga::with(['motorista.veiculos', 'veiculo'])
             ->whereNotNull('data_hora_descarga')
             ->orderBy('data_hora_descarga', 'desc')
             ->paginate(10);

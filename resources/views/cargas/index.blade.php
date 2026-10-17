@@ -22,7 +22,7 @@
                 <tr>
                     {{-- <th>ID</th> --}}
                     <th>Motorista</th>
-                    <th>Placa Cavalo</th>
+                    <th>Veiculo</th>
                     <th>DT</th>
                     <th>Fábrica</th>
                     <th>Data Carreg.</th>
