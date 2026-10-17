@@ -11,7 +11,7 @@ class CargaController extends Controller
 {
     public function index()
     {
-        $cargas = Carga::with(['motorista', 'veiculo'])
+        $cargas = Carga::with(['motorista.veiculos', 'veiculo'])
             ->where(function($query) {
                 $query->whereNull('cte')->orWhere('cte', '');
             })

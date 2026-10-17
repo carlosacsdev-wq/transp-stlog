@@ -47,7 +47,7 @@
             <thead>
                 <tr>
                     <th>Motorista</th>
-                    <th>Veículo</th>
+                    <th>Placas</th>
                     <th>DT</th>
                     <th>Data Carreg.</th>
                     <th>Data Agend.</th>

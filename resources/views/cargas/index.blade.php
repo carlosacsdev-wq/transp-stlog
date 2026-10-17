@@ -22,7 +22,7 @@
                 <tr>
                     {{-- <th>ID</th> --}}
                     <th>Motorista</th>
-                    <th>Veículo</th>
+                    <th>Placa Cavalo</th>
                     <th>DT</th>
                     <th>Fábrica</th>
                     <th>Data Carreg.</th>
@@ -38,8 +38,7 @@
                     <tr>
                         {{-- <td>{{ $carga->id }}</td> --}}
                         <td>{{ $carga->motorista->nome ?? 'Indefinido' }}</td>
-                        <td>{{ $carga->veiculo ? ucfirst($carga->veiculo->tipo) . ' - ' . $carga->veiculo->placa : 'Indefinido' }}
-                        </td>
+                        <td>{{ optional($carga->motorista?->veiculos->firstWhere('tipo', 'cavalo'))->placa ?? 'Indefinido' }} / {{ optional($carga->motorista?->veiculos->firstWhere('tipo', 'carreta'))->placa ?? 'Indefinido' }}</td>
                         <td>{{ $carga->numero_dt }}</td>
                         <td>{{ $carga->fabrica ?? 'N/A' }}</td>
                         <td>{{ $carga->data_carregamento ? \Carbon\Carbon::parse($carga->data_carregamento)->format('d/m/Y H:i') : 'N/A' }}
