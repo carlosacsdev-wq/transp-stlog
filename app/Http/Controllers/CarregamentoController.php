@@ -9,7 +9,7 @@ class CarregamentoController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Carga::with(['motorista', 'veiculo'])
+        $query = Carga::with(['motorista.veiculos', 'veiculo'])
             ->where('status', 'Comprometida')
             ->where(function ($q) {
                 $q->whereNull('cte')->orWhere('cte', '');
