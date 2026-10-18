@@ -293,7 +293,8 @@
     </div>
     <div class="row" aria-label="linha com 30 por cento e 70 por cento">
         <div class="col col-30 col-short vcenter">VEICULO</div>
-        <div class="col col-70 col-tall no-center">{{ $carga->veiculo ? ucfirst($carga->veiculo->tipo) . ': ' . $carga->veiculo->placa : 'N/A' }}</div>
+        <div class="col col-70 col-tall no-center">Cavalo: {{ optional($carga->motorista?->veiculos->firstWhere('tipo', 'cavalo'))->placa ?? 'N/A' }} 
+            <br>Carreta: {{ optional($carga->motorista?->veiculos->firstWhere('tipo', 'carreta'))->placa ?? 'N/A' }}</div>
     </div>
 
     <!-- Sexta div: 2 linhas x 3 colunas -->

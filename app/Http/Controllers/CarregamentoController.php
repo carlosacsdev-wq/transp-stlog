@@ -47,7 +47,7 @@ class CarregamentoController extends Controller
     public function coleta()
     {
         $carregamento = Carga::findOrFail(request()->route('carregamento'));
-        $carregamento->load(['motorista', 'veiculo']);
+        $carregamento->load(['motorista.veiculos', 'veiculo']);
         return view('carregamentos.coleta', ['carga' => $carregamento]);
     }
 }
