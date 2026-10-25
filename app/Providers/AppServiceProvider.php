@@ -23,6 +23,10 @@ class AppServiceProvider extends ServiceProvider
             return $user->is_admin;
         });
 
+        \Illuminate\Support\Facades\Gate::define('gerenciar-diarias', function ($user) {
+            return $user->is_admin || $user->is_financeiro;
+        });
+
         View::composer('*', function ($view) {
             $tenant = request()->route('tenant');
             if ($tenant) {

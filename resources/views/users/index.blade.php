@@ -39,6 +39,7 @@
                 <tr>
                     <th>Nome</th>
                     <th>E-mail</th>
+                    <th>Perfil</th>
                     <th style="width: 100px; text-align: center;">Ações</th>
                 </tr>
             </thead>
@@ -47,6 +48,15 @@
                     <tr>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
+                        <td>
+                            @if($user->is_admin)
+                                Administrador
+                            @elseif($user->is_financeiro)
+                                Financeiro
+                            @else
+                                Usuário
+                            @endif
+                        </td>
                         <td style="text-align: center; white-space: nowrap;">
                             <a href="{{ route('users.edit', ['tenant' => request()->route('tenant'), 'user' => $user->id]) }}" class="btn btn-warning btn-sm" title="Editar">
                                 <i class="fas fa-edit"></i>
@@ -63,7 +73,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="3" class="text-center">Nenhum registro encontrado.</td>
+                        <td colspan="4" class="text-center">Nenhum registro encontrado.</td>
                     </tr>
                 @endforelse
             </tbody>

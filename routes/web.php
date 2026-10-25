@@ -54,10 +54,12 @@ Route::prefix('{tenant}')->group(function () {
         ]);
         Route::resource('canhotos', CanhotoController::class)->only(['index', 'edit', 'update']);
         Route::get('financeiro/diarias', [DiariasController::class, 'index'])->name('financeiro.diarias.index');
-        Route::get('financeiro/diarias/{viagem}/edit', [DiariasController::class, 'edit'])->name('financeiro.diarias.edit');
-        Route::put('financeiro/diarias/{viagem}', [DiariasController::class, 'update'])->name('financeiro.diarias.update');
-        Route::post('financeiro/diarias/{viagem}/aprovar', [DiariasController::class, 'approve'])->name('financeiro.diarias.approve');
-        Route::post('financeiro/diarias/{viagem}/pagar', [DiariasController::class, 'pay'])->name('financeiro.diarias.pay');
+        Route::middleware('can:gerenciar-diarias')->group(function () {
+            Route::get('financeiro/diarias/{viagem}/edit', [DiariasController::class, 'edit'])->name('financeiro.diarias.edit');
+            Route::put('financeiro/diarias/{viagem}', [DiariasController::class, 'update'])->name('financeiro.diarias.update');
+            Route::post('financeiro/diarias/{viagem}/aprovar', [DiariasController::class, 'approve'])->name('financeiro.diarias.approve');
+            Route::post('financeiro/diarias/{viagem}/pagar', [DiariasController::class, 'pay'])->name('financeiro.diarias.pay');
+        });
 
         Route::middleware(['admin'])->group(function () {
             Route::resource('users', UserController::class);

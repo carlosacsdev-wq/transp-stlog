@@ -43,6 +43,10 @@
                         <label for="password_confirmation">Confirmar Senha</label>
                         <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder="Repita a senha">
                     </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" name="is_financeiro" value="1" class="form-check-input" id="is_financeiro" {{ old('is_financeiro', $user->is_financeiro) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="is_financeiro">Responsável pelo financeiro (pode editar, aprovar e marcar diárias como pagas)</label>
+                    </div>
                 </div>
  
                 <div class="card-footer">

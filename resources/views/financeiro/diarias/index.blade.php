@@ -83,27 +83,31 @@
                                 @endif
                             </td>
                             <td class="text-center">
-                                @if(!$viagem->diarias_aprovadas_em)
-                                    <a href="{{ route('financeiro.diarias.edit', ['tenant' => request()->route('tenant'), 'viagem' => $viagem->id]) }}" class="btn btn-warning btn-sm" title="Editar diárias">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                    <form action="{{ route('financeiro.diarias.approve', ['tenant' => request()->route('tenant'), 'viagem' => $viagem->id]) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        <button type="submit" class="btn btn-success btn-sm" title="Aprovar para pagamento" onclick="return confirm('Aprovar {{ $viagem->diarias }} diária(s) para pagamento?')">
-                                            <i class="fas fa-check"></i> Aprovar
-                                        </button>
-                                    </form>
-                                @else
-                                    <span class="text-muted">Aprovada em {{ $viagem->diarias_aprovadas_em->format('d/m/Y H:i') }}</span>
-                                    @if($viagem->diarias_status_pagamento !== 'Pago')
-                                        <form action="{{ route('financeiro.diarias.pay', ['tenant' => request()->route('tenant'), 'viagem' => $viagem->id]) }}" method="POST" class="d-inline">
+                                @can('gerenciar-diarias')
+                                    @if(!$viagem->diarias_aprovadas_em)
+                                        <a href="{{ route('financeiro.diarias.edit', ['tenant' => request()->route('tenant'), 'viagem' => $viagem->id]) }}" class="btn btn-warning btn-sm" title="Editar diárias">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <form action="{{ route('financeiro.diarias.approve', ['tenant' => request()->route('tenant'), 'viagem' => $viagem->id]) }}" method="POST" class="d-inline">
                                             @csrf
-                                            <button type="submit" class="btn btn-primary btn-sm" title="Marcar diárias como pagas" onclick="return confirm('Marcar as diárias como pagas?')">
-                                                <i class="fas fa-money-bill-wave"></i> Marcar pago
+                                            <button type="submit" class="btn btn-success btn-sm" title="Aprovar para pagamento" onclick="return confirm('Aprovar {{ $viagem->diarias }} diária(s) para pagamento?')">
+                                                <i class="fas fa-check"></i>
                                             </button>
                                         </form>
+                                    @else
+                                        <span class="text-muted">Aprovada em {{ $viagem->diarias_aprovadas_em->format('d/m/Y H:i') }}</span>
+                                        @if($viagem->diarias_status_pagamento !== 'Pago')
+                                            <form action="{{ route('financeiro.diarias.pay', ['tenant' => request()->route('tenant'), 'viagem' => $viagem->id]) }}" method="POST" class="d-inline">
+                                                @csrf
+                                                <button type="submit" class="btn btn-primary btn-sm" title="Marcar diárias como pagas" onclick="return confirm('Marcar as diárias como pagas?')">
+                                                    <i class="fas fa-money-bill-wave"></i> Marcar pago
+                                                </button>
+                                            </form>
+                                        @endif
                                     @endif
-                                @endif
+                                @else
+                                    <span class="text-muted">—</span>
+                                @endcan
                             </td>
                         </tr>
                     @empty

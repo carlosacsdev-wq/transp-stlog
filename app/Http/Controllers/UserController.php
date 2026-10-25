@@ -25,6 +25,7 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,NULL,id,tenant_id,' . auth()->user()->tenant_id,
             'password' => 'required|string|min:8|confirmed',
+            'is_financeiro' => 'nullable|boolean',
         ]);
 
         User::create([
@@ -32,6 +33,7 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'tenant_id' => auth()->user()->tenant_id,
+            'is_financeiro' => $request->boolean('is_financeiro'),
         ]);
  
         return redirect()->route('users.index', ['tenant' => request()->route('tenant')])->with('success', 'Usuário criado com sucesso.');
@@ -50,10 +52,12 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id . ',id,tenant_id,' . auth()->user()->tenant_id,
             'password' => 'nullable|string|min:8|confirmed',
+            'is_financeiro' => 'nullable|boolean',
         ]);
  
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->is_financeiro = $request->boolean('is_financeiro');
  
         if ($request->filled('password')) {
             $user->password = Hash::make($request->password);
