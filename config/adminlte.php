@@ -349,12 +349,24 @@ return [
             'prefix' => 'tenant',
         ],
         
-        ['header' => 'FINANCEIRO'],
         [
-            'text' => 'Pagamento',
-            'url'  => 'pagamentos',
-            'icon' => 'fas fa-fw fa-credit-card',
-            'prefix' => 'tenant',
+            'text' => 'Financeiro',
+            'icon' => 'fas fa-fw fa-coins',
+            'classes' => 'financeiro-menu',
+            'submenu' => [
+                [
+                    'text' => 'Frete',
+                    'url'  => 'pagamentos',
+                    'icon' => 'fas fa-fw fa-credit-card',
+                    'prefix' => 'tenant',
+                ],
+                [
+                    'text' => 'Diárias',
+                    'url'  => 'financeiro/diarias',
+                    'icon' => 'fas fa-fw fa-calendar-day',
+                    'prefix' => 'tenant',
+                ],
+            ],
         ],
         ['header' => 'CONFIGURAÇÕES'],
         [
@@ -474,6 +486,16 @@ return [
                     'type' => 'js',
                     'asset' => false,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
+                ],
+            ],
+        ],
+        'CustomAdminLTEStyles' => [
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'css/adminlte-custom.css',
                 ],
             ],
         ],

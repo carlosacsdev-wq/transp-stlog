@@ -50,6 +50,7 @@
                     <th>Veículo</th>
                     <th>Data Chegada</th>
                     <th>Data Descarga</th>
+                    <th>Diárias</th>
                     {{-- <th>Valor Frete</th> --}}
                     <th>CTe</th>
                     <th>Motorista</th>
@@ -71,6 +72,7 @@
                         </td>
                         <td>{{ $viagem->data_hora_descarga ? \Carbon\Carbon::parse($viagem->data_hora_descarga)->format('d/m/Y H:i') : 'Pendente' }}
                         </td>
+                        <td>{{ $viagem->diarias }}</td>
 
                         {{-- <td>R$ {{ number_format($viagem->valor_frete, 2, ',', '.') }}</td> --}}
                         <td>{{ $viagem->cte }}</td>
@@ -93,7 +95,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="10" class="text-center">Nenhum registro encontrado.</td>
+                        <td colspan="11" class="text-center">Nenhum registro encontrado.</td>
                     </tr>
                 @endforelse
             </tbody>

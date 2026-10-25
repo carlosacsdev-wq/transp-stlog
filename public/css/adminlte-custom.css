@@ -1,0 +1,6 @@
+.sidebar-dark-primary .nav-item.has-treeview > .nav-link.financeiro-menu ~ .nav-treeview > .nav-item > .nav-link.active,
+.sidebar-dark-primary .nav-item.has-treeview > .nav-link.financeiro-menu ~ .nav-treeview > .nav-item > .nav-link.active:hover,
+.sidebar-dark-primary .nav-item.has-treeview > .nav-link.financeiro-menu ~ .nav-treeview > .nav-item > .nav-link.active:focus {
+    background-color: #007bff;
+    color: #fff;
+}

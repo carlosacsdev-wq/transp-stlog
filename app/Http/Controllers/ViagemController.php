@@ -63,6 +63,27 @@ class ViagemController extends Controller
             'cte' => 'required',
         ]);
 
+        $datasAlteradas = collect(['data_hora_chegada', 'data_hora_descarga'])
+            ->contains(function ($campo) use ($request, $viagem) {
+                if (! $request->exists($campo)) {
+                    return false;
+                }
+
+                $novaData = $request->input($campo);
+                $dataAtual = $viagem->getRawOriginal($campo);
+
+                if (blank($novaData) || blank($dataAtual)) {
+                    return blank($novaData) !== blank($dataAtual);
+                }
+
+                return \Carbon\Carbon::parse($novaData)->ne(\Carbon\Carbon::parse($dataAtual));
+            });
+
+        if ($datasAlteradas) {
+            $viagem->diarias = null;
+            $viagem->diarias_aprovadas_em = null;
+        }
+
         $viagem->update($request->all());
         return redirect()->route('viagens.index', ['tenant' => request()->route('tenant')])->with('success', 'Viagem atualizada com sucesso.');
     }
